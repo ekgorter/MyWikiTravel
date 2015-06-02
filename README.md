@@ -1,10 +1,18 @@
 #Personal Travel Guide *(title pending)*
 
-##IOS App Proposal
+##*IOS App Proposal by Elias Gorter 6052274*
 
-###Problem
+###Summary of App Goals
 
-When travelling, bringing a travelguide in some form (book, ebook, flyer, tourguide) can greatly enhance the travelling experience. It informs the users about what sights to see, what hotels to sleep in, where to eat and many other things. Each medium used for a travelguide brings its own advantages and disadvantages. A book does not require a battery or internet connection but it may be out of date, can be a heavy thing to bring along and many times it contains more information than is needed for your specific trip. A digital means for getting travel information (for example looking up information on the web) is light, easier to keep up to date and you can look up only the information you need, when you need it. But looking up this information may require a internet connection, which is not always readily available abroad due to extra provider costs or remote locations. Also, having to continuously look up information on the internet may be a nuisance. The goal of this app will be to remove some of the disadvantages of current travelguide media and combine some of their advantages into a useful personal travelguide app to bring along on your trips.
+* App allows searching and browsing [Wikitravel.org](www.wikitravel.org/en) content.
+* App allows creation of "trips", containing saved articles from Wikitravel as chosen by the user.
+* The app can save articles from Wikitravel so they can be read offline.
+* The app tries to organize the collections of saved articles in a easily navigable and clear way.
+* Additional features such as offline maps may be added if enough time remains.
+
+###Problem definition
+
+When travelling, bringing a travelguide in some form (book, ebook, flyer, tourguide) can greatly enhance the travelling experience. It informs the users about what sights to see, what hotels to sleep in, where to eat and many other things. Each medium used for a travelguide brings its own advantages and disadvantages. A book does not require a battery or internet connection but it may be out of date, can be a heavy thing to bring along and many times it contains more information than is needed for your specific trip. A digital means for getting travel information (for example looking up information on the web) is light, easier to keep up to date and you can look up only the information you need, when you need it. But looking up this information may require an internet connection, which is not always readily available abroad due to extra provider costs or remote locations. Also, having to continuously look up information on the internet may be a nuisance. The goal of this app will be to remove some of the disadvantages of current travelguide media and combine some of their advantages into a useful personal travelguide app to bring along on your trips.
 
 ###App description
 
@@ -37,6 +45,11 @@ There is currently one app in the App Store that allows the user to browse the c
 
 ###Early Sketches User Interface
 
+These sketches show an early prototype for the UI, consisting mostly of table views. This UI is to be used for testing the correct implementation of the wikitravel API. Once the app is functional, and if time permits it, the UI may change to look better or to allow for more and better functionality.
+
+![alt text][sketch1]
+![alt text][sketch2]
+
 ###Planning
 
 1. Week 1
@@ -54,7 +67,5 @@ There is currently one app in the App Store that allows the user to browse the c
    * Writing final project reports.
    * Presentation of working app.
 
-
-
-
-
+[sketch1]: https://github.com/ekgorter/ProgrammeerProject/blob/master/doc/earlysketches1.png
+[sketch2]: https://github.com/ekgorter/ProgrammeerProject/blob/master/doc/earlysketches2.png
