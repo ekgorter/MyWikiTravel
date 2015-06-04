@@ -1,4 +1,4 @@
-#Personal Travel Guide *(title pending)*
+#MyWikiTravel
 
 ##*IOS App Proposal by Elias Gorter 6052274*
 
