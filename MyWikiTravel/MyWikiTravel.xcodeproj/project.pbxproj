@@ -15,6 +15,7 @@
 		64C932E51B20AA14004276A4 /* MyGuidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932E41B20AA14004276A4 /* MyGuidesViewController.swift */; };
 		64C932E71B20AA29004276A4 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932E61B20AA29004276A4 /* GuideViewController.swift */; };
 		64C932E91B20AA49004276A4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932E81B20AA49004276A4 /* SearchViewController.swift */; };
+		64C932EB1B20CB0B004276A4 /* MediaWikiAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		64C932E41B20AA14004276A4 /* MyGuidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyGuidesViewController.swift; sourceTree = "<group>"; };
 		64C932E61B20AA29004276A4 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		64C932E81B20AA49004276A4 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaWikiAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				64C932E41B20AA14004276A4 /* MyGuidesViewController.swift */,
 				64C932E61B20AA29004276A4 /* GuideViewController.swift */,
 				64C932E81B20AA49004276A4 /* SearchViewController.swift */,
+				64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */,
 				64C932CB1B20A9D7004276A4 /* Images.xcassets */,
 				64C932CD1B20A9D7004276A4 /* LaunchScreen.xib */,
 				64C932C21B20A9D7004276A4 /* Supporting Files */,
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64C932C51B20A9D7004276A4 /* AppDelegate.swift in Sources */,
+				64C932EB1B20CB0B004276A4 /* MediaWikiAPI.swift in Sources */,
 				64C932E51B20AA14004276A4 /* MyGuidesViewController.swift in Sources */,
 				64C932E91B20AA49004276A4 /* SearchViewController.swift in Sources */,
 				64C932E71B20AA29004276A4 /* GuideViewController.swift in Sources */,
