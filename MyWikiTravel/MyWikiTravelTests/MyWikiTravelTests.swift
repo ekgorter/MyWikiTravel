@@ -1,15 +1,15 @@
 //
-//  MyGuidesTests.swift
-//  MyGuidesTests
+//  MyWikiTravelTests.swift
+//  MyWikiTravelTests
 //
-//  Created by Elias Gorter on 02-06-15.
+//  Created by Elias Gorter on 04-06-15.
 //  Copyright (c) 2015 EliasGorter6052274. All rights reserved.
 //
 
 import UIKit
 import XCTest
 
-class MyGuidesTests: XCTestCase {
+class MyWikiTravelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

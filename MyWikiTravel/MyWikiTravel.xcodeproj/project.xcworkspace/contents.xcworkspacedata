@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MyGuides.xcodeproj">
+      location = "self:MyWikiTravel.xcodeproj">
    </FileRef>
 </Workspace>
