@@ -35,18 +35,22 @@ One of the main goals of this app is to be able to save online articles for offl
 * MyGuidesViewController.swift
 
 This viewcontroller controls the initial view of the app and the root view of the navigation controller. It contains a table that holds the names of all created guides. It also holds a *new* button in the navigation bar. Pressing this button will trigger the associated method which shows an UIAlert pop-up where the user can enter a name for a new guide. Pressing "*ok*" in this pop-up adds the new (empty) guide to the app. Pressing a guide name in the table will segue the view to the GuideViewController.
+![alt text][myguides]
 
 * GuideViewController.swift
 
 This viewcontroller controls the view where the guide's contents are displayed in a tableview. Pressing an article name will segue to the ArticleViewController showing the (offline) saved contents of this article. Pressing the *add* button in the navigation bar will segue to the SearchViewController, where the user may search for new articles to add.
+![alt text][guide]
 
 * SearchViewController.swift
 
 This viewcontroller controls a table view where all search results are displayed. A search term may be entered in the search bar on the top of the screen. Searching calls the searchWikiTravel method inside the MediaWikiAPI class using the MediaWikiAPIProtocol. The method requires a string as input and returns an array of titles of articles that match the search input. The titles are displayed in the table view. Pressing an article title segues to the ArticleViewController, where the contents of this article (online) are displayed.
+![alt text][search]
 
 * ArticleViewController.swift 
 
 This viewcontroller controls the view where the content of an article is displayed. This can either be saved content in the app or online content as retrieved from [wikitravel.org](www.wikitravel.org/en). The content is possibly displayed in either a web view or text view, this has not yet been researched. When the content being shown is not yet saved in the guide, a *save* button will be displayed in the navigation bar. Pressing this button will save an offline version of this article and add it to the current guide.
+![alt text][article]
 
 * Guide.swift
 
@@ -59,3 +63,8 @@ This file holds the Article struct. This struct contains all relevant data retri
 * MediaWikiAPI.swift
 
 All data for the Articles is retrieved from [wikitravel.org](www.wikitravel.org/en). This is done by using the MediaWiki API. This file contains the MediaWikiAPI class, wherein all methods for API actions are declared. Any call to the API is done through this class. Currently, it only contains the search method which takes a string as search term and uses the MediaWiki API to return all articles found with that search term. Later, other kinds of actions may be added.
+
+[myguides]: https://github.com/ekgorter/MyWikiTravel/blob/master/doc/MyGuides.png
+[guide]: https://github.com/ekgorter/MyWikiTravel/blob/master/doc/Guide.png
+[search]: https://github.com/ekgorter/MyWikiTravel/blob/master/doc/Search.png
+[article]: https://github.com/ekgorter/MyWikiTravel/blob/master/doc/Article.png
