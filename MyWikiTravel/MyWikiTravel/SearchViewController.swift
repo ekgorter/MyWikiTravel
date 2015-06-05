@@ -10,7 +10,7 @@ import UIKit
 
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MediaWikiAPIProtocol {
     
-    var searchResults = []
+    var searchResults = [Article]()
     let cellIdentifier = "searchResultCell"
     var api: MediaWikiAPI!
     
@@ -35,17 +35,16 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell!
+        let article = searchResults[indexPath.row]
         
-        if let rowData: NSDictionary = self.searchResults[indexPath.row] as? NSDictionary,
-            title = rowData["title"] as? String {
-                cell.textLabel?.text = title
-        }
+        cell.textLabel?.text = article.title
+        
         return cell
     }
     
     func didReceiveAPIResults(search: NSArray) {
         dispatch_async(dispatch_get_main_queue(), {
-            self.searchResults = search
+            self.searchResults = Article.articlesFromJson(search)
             self.searchResultsTableView!.reloadData()
         })
     }

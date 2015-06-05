@@ -10,7 +10,7 @@ import UIKit
 
 class GuideViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var guide = [String]()
+    var guide = [Article]()
     let cellIdentifier = "guideArticleCell"
     
     @IBOutlet weak var guideTableView: UITableView!
@@ -34,7 +34,7 @@ class GuideViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell!
         let article = guide[indexPath.row]
         
-        cell.textLabel?.text = article
+        cell.textLabel?.text = article.title
         
         return cell
     }

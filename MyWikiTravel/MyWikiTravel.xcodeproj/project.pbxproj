@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64C5A6821B2187C200839E7A /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C5A6811B2187C200839E7A /* Article.swift */; };
 		64C932C51B20A9D7004276A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932C41B20A9D7004276A4 /* AppDelegate.swift */; };
 		64C932CA1B20A9D7004276A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64C932C81B20A9D7004276A4 /* Main.storyboard */; };
 		64C932CC1B20A9D7004276A4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C932CB1B20A9D7004276A4 /* Images.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		64C5A6811B2187C200839E7A /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		64C932BF1B20A9D7004276A4 /* MyWikiTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWikiTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C932C31B20A9D7004276A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64C932C41B20A9D7004276A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				64C932E61B20AA29004276A4 /* GuideViewController.swift */,
 				64C932E81B20AA49004276A4 /* SearchViewController.swift */,
 				64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */,
+				64C5A6811B2187C200839E7A /* Article.swift */,
 				64C932CB1B20A9D7004276A4 /* Images.xcassets */,
 				64C932CD1B20A9D7004276A4 /* LaunchScreen.xib */,
 				64C932C21B20A9D7004276A4 /* Supporting Files */,
@@ -223,6 +226,7 @@
 			files = (
 				64C932C51B20A9D7004276A4 /* AppDelegate.swift in Sources */,
 				64C932EB1B20CB0B004276A4 /* MediaWikiAPI.swift in Sources */,
+				64C5A6821B2187C200839E7A /* Article.swift in Sources */,
 				64C932E51B20AA14004276A4 /* MyGuidesViewController.swift in Sources */,
 				64C932E91B20AA49004276A4 /* SearchViewController.swift in Sources */,
 				64C932E71B20AA29004276A4 /* GuideViewController.swift in Sources */,
@@ -421,6 +425,7 @@
 				64C932E01B20A9D7004276A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		64C932E11B20A9D7004276A4 /* Build configuration list for PBXNativeTarget "MyWikiTravelTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +434,7 @@
 				64C932E31B20A9D7004276A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
