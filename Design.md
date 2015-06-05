@@ -26,6 +26,10 @@ This is the very base of the app's functionality. The current interface is made 
 
 Most of the app's data is retrieved from [wikitravel.org](www.wikitravel.org/en). To retrieve this data, the app uses the **MediaWiki API**. This API is used by most Wiki sites. It allows the contents of the site to be searched and parsed. Most of it's data output is in the JSON format, which is a widely used format and swift has built-in functionality to handle it. The text in the articles is mostly in the wikitext or html format.
 
+###Data Persistence
+
+One of the main goals of this app is to be able to save online articles for offline reading. As most of the data making up the articles can be saved as one of the types supported by NSUserDefaults, this will be the first way of saving the required data. A more advanced way of data persistence in apps is using Core Data. This seems to be a difficult topic however, so it will only be looked into when time allows it or when there is no other easier way.
+
 ### (*current*) Classes and Methods
 
 * MyGuidesViewController.swift
@@ -55,12 +59,3 @@ This file holds the Article struct. This struct contains all relevant data retri
 * MediaWikiAPI.swift
 
 All data for the Articles is retrieved from [wikitravel.org](www.wikitravel.org/en). This is done by using the MediaWiki API. This file contains the MediaWikiAPI class, wherein all methods for API actions are declared. Any call to the API is done through this class. Currently, it only contains the search method which takes a string as search term and uses the MediaWiki API to return all articles found with that search term. Later, other kinds of actions may be added.
-
-
-
-
-
-
-
-
-
