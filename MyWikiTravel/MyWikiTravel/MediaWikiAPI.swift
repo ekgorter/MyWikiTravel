@@ -8,8 +8,9 @@
 
 import Foundation
 
-protocol MediaWikiAPIProtocol {
-    func didReceiveAPIResults(search: NSArray)
+@objc protocol MediaWikiAPIProtocol {
+    optional func searchAPIResults(search: NSArray)
+    optional func articleAPIResults(articleText: String)
 }
 
 class MediaWikiAPI {
@@ -34,7 +35,32 @@ class MediaWikiAPI {
                 }
                 if let query: NSDictionary = jsonResult["query"] as? NSDictionary {
                     if let search: NSArray = query["search"] as? NSArray {
-                        self.delegate.didReceiveAPIResults(search)
+                        self.delegate.searchAPIResults!(search)
+                    }
+                }
+            }
+        })
+        task.resume()
+    }
+    
+    func getArticleText(articleTitle: String) {
+        let urlPath = "http://wikitravel.org/wiki/en/api.php?format=json&action=query&prop=extracts&explaintext=true&titles=\(articleTitle)"
+        let url = NSURL(string: urlPath)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
+            if(error != nil) {
+                println(error.localizedDescription)
+            }
+            var err: NSError?
+            if let jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? NSDictionary {
+                if(err != nil) {
+                    println("JSON Error \(err!.localizedDescription)")
+                }
+                if let pages: NSDictionary = jsonResult["query"]?["pages"] as? NSDictionary {
+                    if let id: String = pages.allKeys.first! as? String {
+                        if let text: String = pages[id]!["extract"] as? String {
+                            self.delegate.articleAPIResults!(text)
+                        }
                     }
                 }
             }

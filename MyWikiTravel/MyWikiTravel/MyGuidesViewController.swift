@@ -68,6 +68,5 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
             var guideIndex = guidesTableView!.indexPathForSelectedRow()!.row
             guideViewController.navigationItem.title = guides[guideIndex]
         }
-        
     }
 }

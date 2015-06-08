@@ -8,11 +8,13 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MediaWikiAPIProtocol {
+class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, MediaWikiAPIProtocol {
     
     var searchResults = [Article]()
     let cellIdentifier = "searchResultCell"
     var api: MediaWikiAPI!
+    
+    @IBOutlet weak var articleSearchBar: UISearchBar!
     
     @IBOutlet weak var searchResultsTableView: UITableView!
     
@@ -21,7 +23,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         
         // Do any additional setup after loading the view.
         api = MediaWikiAPI(delegate: self)
-        api.searchWikiTravel("amsterdam")
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,10 +43,23 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-    func didReceiveAPIResults(search: NSArray) {
+    func searchAPIResults(search: NSArray) {
         dispatch_async(dispatch_get_main_queue(), {
             self.searchResults = Article.articlesFromJson(search)
             self.searchResultsTableView!.reloadData()
         })
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        api.searchWikiTravel(articleSearchBar.text)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let articleViewController: ArticleViewController = segue.destinationViewController as? ArticleViewController {
+            var guideIndex = searchResultsTableView!.indexPathForSelectedRow()!.row
+            articleViewController.navigationItem.title = searchResults[guideIndex].title
+            articleViewController.article = searchResults[guideIndex].title
+        }
+        
     }
 }
