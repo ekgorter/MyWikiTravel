@@ -33,10 +33,8 @@ class MediaWikiAPI {
                 if(err != nil) {
                     println("JSON Error \(err!.localizedDescription)")
                 }
-                if let query: NSDictionary = jsonResult["query"] as? NSDictionary {
-                    if let search: NSArray = query["search"] as? NSArray {
-                        self.delegate.searchAPIResults!(search)
-                    }
+                if let searchResult: NSArray = jsonResult["query"]?["search"] as? NSArray {
+                    self.delegate.searchAPIResults!(searchResult)
                 }
             }
         })

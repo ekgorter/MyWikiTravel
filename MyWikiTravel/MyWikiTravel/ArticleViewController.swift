@@ -10,20 +10,26 @@ import UIKit
 
 class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     
-    var article: String!
+    var article: Article!
+    var onlineSource: Bool!
     var api: MediaWikiAPI!
     
     @IBOutlet weak var articleTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        navigationItem.title = article.title
         api = MediaWikiAPI(delegate: self)
-        let correctedInput = article.stringByReplacingOccurrencesOfString(" ", withString: "%20")
-        api.getArticleText(correctedInput)
+        if onlineSource == true {
+            let correctedInput = article.title.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+            api.getArticleText(correctedInput)
+        } else {
+            self.articleTextView.text = "saved article"
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

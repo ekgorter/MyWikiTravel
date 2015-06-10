@@ -43,9 +43,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-    func searchAPIResults(search: NSArray) {
+    func searchAPIResults(searchResult: NSArray) {
         dispatch_async(dispatch_get_main_queue(), {
-            self.searchResults = Article.articlesFromJson(search)
+            self.searchResults = Article.articlesFromJson(searchResult)
             self.searchResultsTableView!.reloadData()
         })
     }
@@ -56,10 +56,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let articleViewController: ArticleViewController = segue.destinationViewController as? ArticleViewController {
-            var guideIndex = searchResultsTableView!.indexPathForSelectedRow()!.row
-            articleViewController.navigationItem.title = searchResults[guideIndex].title
-            articleViewController.article = searchResults[guideIndex].title
+            var articleIndex = searchResultsTableView!.indexPathForSelectedRow()!.row
+            articleViewController.onlineSource = true
+            articleViewController.article = searchResults[articleIndex]
         }
-        
     }
 }

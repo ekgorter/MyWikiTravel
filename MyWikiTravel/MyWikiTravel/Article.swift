@@ -14,12 +14,12 @@ struct Article {
     init(title: String) {
         self.title = title
     }
-
-    static func articlesFromJson(search: NSArray) -> [Article] {
+    
+    static func articlesFromJson(searchResult: NSArray) -> [Article] {
         var articles = [Article]()
         
-        if search.count>0 {
-            for result in search {
+        if searchResult.count>0 {
+            for result in searchResult {
                 let title = result["title"] as? String
                 
                 var newArticle = Article(title: title!)

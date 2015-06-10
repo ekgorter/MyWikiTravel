@@ -139,6 +139,7 @@
                         <viewControllerLayoutGuide type="bottom" id="TZs-nc-Rbn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PEl-62-w4i">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CK2-oO-rcT">

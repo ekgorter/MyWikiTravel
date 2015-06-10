@@ -12,6 +12,7 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var guides = [String]()
     let cellIdentifier = "myGuidesCell"
+    let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
     @IBOutlet weak var guidesTableView: UITableView!
     
@@ -20,6 +21,9 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.translucent = false
+        if let savedGuides = userDefaults.valueForKey("guides") as? [(String)] {
+            self.guides = savedGuides
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -53,6 +57,7 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
             if input.text != "" {
                 self.guides.append(input.text)
                 self.guidesTableView!.reloadData()
+                self.userDefaults.setValue(self.guides, forKey: "guides")
             }
         }))
         alertController.addTextFieldWithConfigurationHandler { (textField) in
