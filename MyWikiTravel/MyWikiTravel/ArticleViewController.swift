@@ -5,6 +5,7 @@
 //  Created by Elias Gorter on 08-06-15.
 //  Copyright (c) 2015 EliasGorter6052274. All rights reserved.
 //
+// Displays selected article content, from online or offline source.
 
 import UIKit
 
@@ -18,10 +19,10 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
         navigationItem.title = article.title
         api = MediaWikiAPI(delegate: self)
+        
+        // Display either article text from online article or from saved article in app.
         if onlineSource == true {
             let correctedInput = article.title.stringByReplacingOccurrencesOfString(" ", withString: "%20")
             api.getArticleText(correctedInput)
@@ -32,9 +33,9 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    // Set text of textview to be the article text as retrieved from wikitravel.org.
     func articleAPIResults(articleText: String) {
         dispatch_async(dispatch_get_main_queue(), {
             self.articleTextView.text = articleText

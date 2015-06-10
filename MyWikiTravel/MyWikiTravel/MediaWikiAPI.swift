@@ -5,9 +5,11 @@
 //  Created by Elias Gorter on 04-06-15.
 //  Copyright (c) 2015 EliasGorter6052274. All rights reserved.
 //
+// All methods for communicating with MediaWiki API are defined here.
 
 import Foundation
 
+// Protocol defining methods for retrieving MediaWiki API results.
 @objc protocol MediaWikiAPIProtocol {
     optional func searchAPIResults(search: NSArray)
     optional func articleAPIResults(articleText: String)
@@ -20,6 +22,7 @@ class MediaWikiAPI {
         self.delegate = delegate
     }
     
+    // Searches wikitravel.org with the inputted search term. Returns an array of article titles from JSON.
     func searchWikiTravel(searchTerm: String) {
         let urlPath = "http://wikitravel.org/wiki/en/api.php?format=json&action=query&list=search&srwhat=text&srsearch=\(searchTerm)"
         let url = NSURL(string: urlPath)
@@ -41,6 +44,7 @@ class MediaWikiAPI {
         task.resume()
     }
     
+    // Gets the text content of defined article from wikitravel.org.
     func getArticleText(articleTitle: String) {
         let urlPath = "http://wikitravel.org/wiki/en/api.php?format=json&action=query&prop=extracts&explaintext=true&titles=\(articleTitle)"
         let url = NSURL(string: urlPath)
