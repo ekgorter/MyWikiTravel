@@ -8,24 +8,23 @@
 // Displays a table of created guides.
 
 import UIKit
+import CoreData
 
 class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var guides = [String]()
+    var guides = [Guide]()
     let cellIdentifier = "myGuidesCell"
-    let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     @IBOutlet weak var guidesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "My Guides"
+        title = "My Guides"
         // Navigation bar is not translucent to prevent problem with cells staying under bar.
         navigationController?.navigationBar.translucent = false
-        // If any guides are stored in the app, these are displayed in the table.
-        if let savedGuides = userDefaults.valueForKey("guides") as? [(String)] {
-            self.guides = savedGuides
-        }
+        
+        fetchGuides()
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,7 +38,7 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell
         let guide = guides[indexPath.row]
-        cell.textLabel?.text = guide
+        cell.textLabel?.text = guide.title
         return cell
     }
     
@@ -48,10 +47,19 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
         return true
     }
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            self.guides.removeAtIndex(indexPath.row)
-            self.userDefaults.setValue(self.guides, forKey: "guides")
-            self.guidesTableView!.reloadData()
+        if(editingStyle == .Delete ) {
+            // Find the LogItem object the user is trying to delete
+            let guideToDelete = guides[indexPath.row]
+            
+            // Delete it from the managedObjectContext
+            managedObjectContext?.deleteObject(guideToDelete)
+            
+            // Refresh the table view to indicate that it's deleted
+            self.fetchGuides()
+            
+            // Tell the table view to animate out that row
+            guidesTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            save()
         }
     }
     
@@ -66,9 +74,7 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: { (action: UIAlertAction!) in
             // If any guidename is entered in textfield.
             if input.text != "" {
-                self.guides.append(input.text)
-                self.guidesTableView!.reloadData()
-                self.userDefaults.setValue(self.guides, forKey: "guides")
+                self.saveNewGuide(input.text)
             }
         }))
         // Implements textfield functionality.
@@ -80,11 +86,53 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    func fetchGuides() {
+        let fetchRequest = NSFetchRequest(entityName: "Guide")
+        
+        // Create a sort descriptor object that sorts on the "title"
+        // property of the Core Data object
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        
+        // Set the list of sort descriptors in the fetch request,
+        // so it includes the sort descriptor
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Guide] {
+            guides = fetchResults
+        }
+    }
+    
+    func saveNewGuide(title : String) {
+        // Create the new  log item
+        var newGuide = Guide.createInManagedObjectContext(self.managedObjectContext!, title: title)
+        
+        // Update the array containing the table view row data
+        self.fetchGuides()
+        
+        // Animate in the new row
+        // Use Swift's find() function to figure out the index of the newLogItem
+        // after it's been added and sorted in our logItems array
+        if let newGuideIndex = find(guides, newGuide) {
+            // Create an NSIndexPath from the newItemIndex
+            let newGuideIndexPath = NSIndexPath(forRow: newGuideIndex, inSection: 0)
+            // Animate in the insertion of this row
+            guidesTableView.insertRowsAtIndexPaths([ newGuideIndexPath ], withRowAnimation: .Automatic)
+            save()
+        }
+    }
+    
+    func save() {
+        var error : NSError?
+        if(managedObjectContext!.save(&error) ) {
+            println(error?.localizedDescription)
+        }
+    }
+    
     // Opens selected guide in new view.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let guideViewController: GuideViewController = segue.destinationViewController as? GuideViewController {
             var guideIndex = guidesTableView!.indexPathForSelectedRow()!.row
-            guideViewController.navigationItem.title = guides[guideIndex]
+            guideViewController.navigationItem.title = guides[guideIndex].title
         }
     }
 }

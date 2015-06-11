@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6428B7021B25A6D200A96CC7 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6428B7011B25A6D200A96CC7 /* ArticleViewController.swift */; };
-		64C5A6821B2187C200839E7A /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C5A6811B2187C200839E7A /* Article.swift */; };
+		648C91C21B29863500CF8D9E /* MyWikiTravel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 648C91C01B29863500CF8D9E /* MyWikiTravel.xcdatamodeld */; };
+		648C92281B29BDEA00CF8D9E /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648C92271B29BDEA00CF8D9E /* Guide.swift */; };
 		64C932C51B20A9D7004276A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932C41B20A9D7004276A4 /* AppDelegate.swift */; };
 		64C932CA1B20A9D7004276A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64C932C81B20A9D7004276A4 /* Main.storyboard */; };
 		64C932CC1B20A9D7004276A4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C932CB1B20A9D7004276A4 /* Images.xcassets */; };
@@ -32,7 +33,8 @@
 
 /* Begin PBXFileReference section */
 		6428B7011B25A6D200A96CC7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
-		64C5A6811B2187C200839E7A /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		648C91C11B29863500CF8D9E /* MyWikiTravel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWikiTravel.xcdatamodel; sourceTree = "<group>"; };
+		648C92271B29BDEA00CF8D9E /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		64C932BF1B20A9D7004276A4 /* MyWikiTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWikiTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C932C31B20A9D7004276A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64C932C41B20A9D7004276A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +96,8 @@
 				64C932E81B20AA49004276A4 /* SearchViewController.swift */,
 				6428B7011B25A6D200A96CC7 /* ArticleViewController.swift */,
 				64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */,
-				64C5A6811B2187C200839E7A /* Article.swift */,
+				648C92271B29BDEA00CF8D9E /* Guide.swift */,
+				648C91C01B29863500CF8D9E /* MyWikiTravel.xcdatamodeld */,
 				64C932CB1B20A9D7004276A4 /* Images.xcassets */,
 				64C932CD1B20A9D7004276A4 /* LaunchScreen.xib */,
 				64C932C21B20A9D7004276A4 /* Supporting Files */,
@@ -230,8 +233,9 @@
 				64C932C51B20A9D7004276A4 /* AppDelegate.swift in Sources */,
 				64C932EB1B20CB0B004276A4 /* MediaWikiAPI.swift in Sources */,
 				6428B7021B25A6D200A96CC7 /* ArticleViewController.swift in Sources */,
-				64C5A6821B2187C200839E7A /* Article.swift in Sources */,
 				64C932E51B20AA14004276A4 /* MyGuidesViewController.swift in Sources */,
+				648C92281B29BDEA00CF8D9E /* Guide.swift in Sources */,
+				648C91C21B29863500CF8D9E /* MyWikiTravel.xcdatamodeld in Sources */,
 				64C932E91B20AA49004276A4 /* SearchViewController.swift in Sources */,
 				64C932E71B20AA29004276A4 /* GuideViewController.swift in Sources */,
 			);
@@ -441,6 +445,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		648C91C01B29863500CF8D9E /* MyWikiTravel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				648C91C11B29863500CF8D9E /* MyWikiTravel.xcdatamodel */,
+			);
+			currentVersion = 648C91C11B29863500CF8D9E /* MyWikiTravel.xcdatamodel */;
+			path = MyWikiTravel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 64C932B71B20A9D7004276A4 /* Project object */;
 }

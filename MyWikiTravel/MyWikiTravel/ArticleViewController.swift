@@ -11,7 +11,7 @@ import UIKit
 
 class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     
-    var article: Article!
+    var article: String!
     var onlineSource: Bool!
     var api: MediaWikiAPI!
     
@@ -19,13 +19,13 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = article.title
+        navigationItem.title = article
         api = MediaWikiAPI(delegate: self)
         
         // Display either article text from online article or from saved article in app.
         if onlineSource == true {
-            let correctedInput = article.title.stringByReplacingOccurrencesOfString(" ", withString: "%20")
-            api.getArticleText(correctedInput)
+            // MediaWiki API requires "%20" instead of spaces.
+            api.getArticleText(article.stringByReplacingOccurrencesOfString(" ", withString: "%20"))
         } else {
             self.articleTextView.text = "saved article"
         }

@@ -11,7 +11,7 @@ import UIKit
 
 class GuideViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var guide = [Article]()
+    var guide = "list of articles"
     let cellIdentifier = "guideArticleCell"
     
     @IBOutlet weak var guideTableView: UITableView!
@@ -26,12 +26,12 @@ class GuideViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     // Show article titles of selected guide in tableview cells.
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return guide.count
+        return 0
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell!
-        let article = guide[indexPath.row]
-        cell.textLabel?.text = article.title
+//        let article = guide[indexPath.row]
+        cell.textLabel?.text = "article name"
         return cell
     }
 }

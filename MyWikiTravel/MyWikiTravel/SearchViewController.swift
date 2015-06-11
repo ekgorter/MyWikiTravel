@@ -11,7 +11,7 @@ import UIKit
 
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, MediaWikiAPIProtocol {
     
-    var searchResults = [Article]()
+    var searchResults = [String]()
     let cellIdentifier = "searchResultCell"
     var api: MediaWikiAPI!
     
@@ -36,16 +36,28 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell!
         let article = searchResults[indexPath.row]
-        cell.textLabel?.text = article.title
+        cell.textLabel?.text = article
         return cell
     }
     
     // Displays the the results of the inputted search term in the tableview.
     func searchAPIResults(searchResult: NSArray) {
         dispatch_async(dispatch_get_main_queue(), {
-            self.searchResults = Article.articlesFromJson(searchResult)
+            self.searchResults = self.articlesFromJson(searchResult)
             self.searchResultsTableView!.reloadData()
         })
+    }
+    
+    func articlesFromJson(searchResult: NSArray) -> [String] {
+        var articles = [String]()
+        if searchResult.count>0 {
+            for result in searchResult {
+                let title = result["title"] as? String
+                
+                articles.append(title!)
+            }
+        }
+        return articles
     }
     
     // Searches wikitravel.org with inputted search term.
