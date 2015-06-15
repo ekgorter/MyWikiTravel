@@ -30,9 +30,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="VCJ-Gt-L19"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="ZFM-6j-Zy5"/>
@@ -40,14 +37,32 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="TQ6-Tb-TWN" secondAttribute="trailing" id="LgA-dL-P5S"/>
+                            <constraint firstItem="TQ6-Tb-TWN" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="TRL-3R-Y3v"/>
+                            <constraint firstItem="TQ6-Tb-TWN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="prc-w8-ouF"/>
+                            <constraint firstItem="TQ6-Tb-TWN" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="wNw-QK-pZz"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="TQ6-Tb-TWN"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="LgA-dL-P5S"/>
+                                <exclude reference="TRL-3R-Y3v"/>
+                                <exclude reference="prc-w8-ouF"/>
+                                <exclude reference="wNw-QK-pZz"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="TQ6-Tb-TWN"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="LgA-dL-P5S"/>
+                                <include reference="TRL-3R-Y3v"/>
+                                <include reference="prc-w8-ouF"/>
+                                <include reference="wNw-QK-pZz"/>
                             </mask>
                         </variation>
                     </view>
@@ -64,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="349"/>
+            <point key="canvasLocation" x="852" y="348.75"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="X82-9d-KCv">
@@ -100,9 +115,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="sB1-hq-AnF" id="cKu-fA-f8m"/>
                                     <outlet property="delegate" destination="sB1-hq-AnF" id="nyX-8l-jIi"/>
@@ -110,14 +122,32 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cb2-gY-m2Y" secondAttribute="trailing" id="4FU-SP-tBT"/>
+                            <constraint firstItem="cb2-gY-m2Y" firstAttribute="top" secondItem="45e-Wd-DkE" secondAttribute="top" id="EoA-lv-VJ4"/>
+                            <constraint firstItem="cb2-gY-m2Y" firstAttribute="leading" secondItem="45e-Wd-DkE" secondAttribute="leading" id="cLb-7D-Lb8"/>
+                            <constraint firstItem="cb2-gY-m2Y" firstAttribute="bottom" secondItem="Mpo-ww-uH1" secondAttribute="top" id="jaO-9Q-rp2"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="cb2-gY-m2Y"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4FU-SP-tBT"/>
+                                <exclude reference="EoA-lv-VJ4"/>
+                                <exclude reference="cLb-7D-Lb8"/>
+                                <exclude reference="jaO-9Q-rp2"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="cb2-gY-m2Y"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="4FU-SP-tBT"/>
+                                <include reference="EoA-lv-VJ4"/>
+                                <include reference="cLb-7D-Lb8"/>
+                                <include reference="jaO-9Q-rp2"/>
                             </mask>
                         </variation>
                     </view>
@@ -128,7 +158,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OlR-yy-Ls2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581" y="1027.5"/>
+            <point key="canvasLocation" x="852" y="1060.5"/>
         </scene>
         <!--Article View Controller-->
         <scene sceneID="pbA-rc-3VW">
@@ -148,30 +178,52 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
-                                </variation>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="CK2-oO-rcT" secondAttribute="trailing" id="cpl-vp-dSt"/>
+                            <constraint firstItem="CK2-oO-rcT" firstAttribute="bottom" secondItem="TZs-nc-Rbn" secondAttribute="top" id="fc6-RM-w6Z"/>
+                            <constraint firstItem="CK2-oO-rcT" firstAttribute="leading" secondItem="PEl-62-w4i" secondAttribute="leading" id="mOu-LX-cDN"/>
+                            <constraint firstItem="CK2-oO-rcT" firstAttribute="top" secondItem="PEl-62-w4i" secondAttribute="top" id="pv9-Cw-TTC"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="CK2-oO-rcT"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="cpl-vp-dSt"/>
+                                <exclude reference="fc6-RM-w6Z"/>
+                                <exclude reference="mOu-LX-cDN"/>
+                                <exclude reference="pv9-Cw-TTC"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="CK2-oO-rcT"/>
                             </mask>
+                            <mask key="constraints">
+                                <include reference="cpl-vp-dSt"/>
+                                <include reference="fc6-RM-w6Z"/>
+                                <include reference="mOu-LX-cDN"/>
+                                <include reference="pv9-Cw-TTC"/>
+                            </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="Lh1-Z6-mvb">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="lZR-ff-BWB">
+                            <connections>
+                                <action selector="saveArticleBarButton:" destination="9uz-aK-BnI" id="sYm-1N-GdF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="articleTextView" destination="CK2-oO-rcT" id="b8s-LP-7Us"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sJQ-CI-Hq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2392.5" y="1027.5"/>
+            <point key="canvasLocation" x="1581" y="1060.5"/>
         </scene>
         <!--Guide View Controller-->
         <scene sceneID="ls2-cb-j9O">
@@ -194,11 +246,11 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zHp-5f-qQa" id="z7H-wv-BSB">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="9uz-aK-BnI" kind="show" id="0JJ-4d-n0t"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="MjH-6E-pmh" id="iww-6U-wd5"/>
                                     <outlet property="delegate" destination="MjH-6E-pmh" id="Kky-9A-tZm"/>
@@ -206,14 +258,32 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Uq4-In-Xg8" firstAttribute="bottom" secondItem="XR9-rh-ScL" secondAttribute="top" id="0sP-jD-WZD"/>
+                            <constraint firstAttribute="trailing" secondItem="Uq4-In-Xg8" secondAttribute="trailing" id="7cY-nm-MUA"/>
+                            <constraint firstItem="Uq4-In-Xg8" firstAttribute="top" secondItem="UbZ-ag-kpR" secondAttribute="top" id="uPE-ld-cp8"/>
+                            <constraint firstItem="Uq4-In-Xg8" firstAttribute="leading" secondItem="UbZ-ag-kpR" secondAttribute="leading" id="z28-Jl-igh"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="Uq4-In-Xg8"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="0sP-jD-WZD"/>
+                                <exclude reference="7cY-nm-MUA"/>
+                                <exclude reference="uPE-ld-cp8"/>
+                                <exclude reference="z28-Jl-igh"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="Uq4-In-Xg8"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="0sP-jD-WZD"/>
+                                <include reference="7cY-nm-MUA"/>
+                                <include reference="uPE-ld-cp8"/>
+                                <include reference="z28-Jl-igh"/>
                             </mask>
                         </variation>
                     </view>
@@ -251,4 +321,7 @@
             <point key="canvasLocation" x="140" y="349"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="jmz-Tf-JsM"/>
+    </inferredMetricsTieBreakers>
 </document>

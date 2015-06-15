@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Article" syncable="YES">
+    <entity name="Article" representedClassName="MyWikiTravel.Article" syncable="YES">
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="belongsToGuide" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guide" inverseName="guideContent" inverseEntity="Guide" syncable="YES"/>
     </entity>
     <entity name="Guide" representedClassName="MyWikiTravel.Guide" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="guideContent" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Article" inverseName="belongsToGuide" inverseEntity="Article" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Guide" positionX="-63" positionY="-18" width="128" height="60"/>
-        <element name="Article" positionX="-45" positionY="9" width="128" height="60"/>
+        <element name="Article" positionX="25" positionY="-9" width="128" height="88"/>
+        <element name="Guide" positionX="-270" positionY="-63" width="128" height="73"/>
     </elements>
 </model>

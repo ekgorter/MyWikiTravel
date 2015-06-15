@@ -110,8 +110,8 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
         self.fetchGuides()
         
         // Animate in the new row
-        // Use Swift's find() function to figure out the index of the newLogItem
-        // after it's been added and sorted in our logItems array
+        // Use Swift's find() function to figure out the index of the newGuide
+        // after it's been added and sorted in our guides array
         if let newGuideIndex = find(guides, newGuide) {
             // Create an NSIndexPath from the newItemIndex
             let newGuideIndexPath = NSIndexPath(forRow: newGuideIndex, inSection: 0)
@@ -132,7 +132,7 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let guideViewController: GuideViewController = segue.destinationViewController as? GuideViewController {
             var guideIndex = guidesTableView!.indexPathForSelectedRow()!.row
-            guideViewController.navigationItem.title = guides[guideIndex].title
+            guideViewController.title = guides[guideIndex].title
         }
     }
 }

@@ -12,6 +12,7 @@ import UIKit
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, MediaWikiAPIProtocol {
     
     var searchResults = [String]()
+    var guide: Guide!
     let cellIdentifier = "searchResultCell"
     var api: MediaWikiAPI!
     
@@ -62,7 +63,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     
     // Searches wikitravel.org with inputted search term.
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        api.searchWikiTravel(articleSearchBar.text)
+        api.searchWikiTravel(articleSearchBar.text.stringByReplacingOccurrencesOfString(" ", withString: "%20"))
     }
     
     // Displays selected article contents in new view.
@@ -71,6 +72,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             var articleIndex = searchResultsTableView!.indexPathForSelectedRow()!.row
             articleViewController.onlineSource = true
             articleViewController.article = searchResults[articleIndex]
+            articleViewController.guide = guide
         }
     }
 }

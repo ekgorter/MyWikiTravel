@@ -8,18 +8,22 @@
 // Displays selected article content, from online or offline source.
 
 import UIKit
+import CoreData
 
 class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     
     var article: String!
+    var savedArticleText: String!
     var onlineSource: Bool!
+    var guide: Guide!
     var api: MediaWikiAPI!
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     @IBOutlet weak var articleTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = article
+        title = article
         api = MediaWikiAPI(delegate: self)
         
         // Display either article text from online article or from saved article in app.
@@ -27,7 +31,8 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
             // MediaWiki API requires "%20" instead of spaces.
             api.getArticleText(article.stringByReplacingOccurrencesOfString(" ", withString: "%20"))
         } else {
-            self.articleTextView.text = "saved article"
+            self.articleTextView.text = savedArticleText
+            self.self.navigationItem.rightBarButtonItems = []
         }
     }
     
@@ -40,5 +45,23 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
         dispatch_async(dispatch_get_main_queue(), {
             self.articleTextView.text = articleText
         })
+    }
+    
+    @IBAction func saveArticleBarButton(sender: AnyObject) {
+        saveArticle(article, text: self.articleTextView.text, guide: guide)
+        self.navigationController?.popToViewController(navigationController!.viewControllers[1] as! UIViewController, animated: true)
+    }
+    
+    func saveArticle(title: String, text: String, guide: Guide) {
+        // Create the new article.
+        var newArticle = Article.createInManagedObjectContext(self.managedObjectContext!, title: title, text: text, guide: guide)
+        save()
+    }
+    
+    func save() {
+        var error : NSError?
+        if(managedObjectContext!.save(&error) ) {
+            println(error?.localizedDescription)
+        }
     }
 }
