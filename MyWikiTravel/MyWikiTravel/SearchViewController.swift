@@ -11,13 +11,17 @@ import UIKit
 
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, MediaWikiAPIProtocol {
     
-    var searchResults = [String]()
+    // Contains all requested data found with search.
+    var searchResults = [Searchresult]()
+    
+    // Contains the current guide.
     var guide: Guide!
     let cellIdentifier = "searchResultCell"
+    
+    // Variable allows quick use of API methods.
     var api: MediaWikiAPI!
     
     @IBOutlet weak var articleSearchBar: UISearchBar!
-    
     @IBOutlet weak var searchResultsTableView: UITableView!
     
     override func viewDidLoad() {
@@ -37,33 +41,22 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell!
         let article = searchResults[indexPath.row]
-        cell.textLabel?.text = article
+        cell.textLabel?.text = article.title
         return cell
     }
     
     // Displays the the results of the inputted search term in the tableview.
     func searchAPIResults(searchResult: NSArray) {
         dispatch_async(dispatch_get_main_queue(), {
-            self.searchResults = self.articlesFromJson(searchResult)
+            
+            self.searchResults = Searchresult.searchresultsFromJson(searchResult, guide: self.guide)
             self.searchResultsTableView!.reloadData()
         })
     }
     
-    func articlesFromJson(searchResult: NSArray) -> [String] {
-        var articles = [String]()
-        if searchResult.count>0 {
-            for result in searchResult {
-                let title = result["title"] as? String
-                
-                articles.append(title!)
-            }
-        }
-        return articles
-    }
-    
     // Searches wikitravel.org with inputted search term.
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        api.searchWikiTravel(articleSearchBar.text.stringByReplacingOccurrencesOfString(" ", withString: "%20"))
+        api.searchWikiTravel(articleSearchBar.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
     }
     
     // Displays selected article contents in new view.
@@ -72,7 +65,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
             var articleIndex = searchResultsTableView!.indexPathForSelectedRow()!.row
             articleViewController.onlineSource = true
             articleViewController.article = searchResults[articleIndex]
-            articleViewController.guide = guide
         }
     }
 }

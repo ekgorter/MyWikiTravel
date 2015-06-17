@@ -20,6 +20,7 @@
 		64C932E71B20AA29004276A4 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932E61B20AA29004276A4 /* GuideViewController.swift */; };
 		64C932E91B20AA49004276A4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932E81B20AA49004276A4 /* SearchViewController.swift */; };
 		64C932EB1B20CB0B004276A4 /* MediaWikiAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */; };
+		64DE9BBF1B318AF1001AE741 /* Searchresult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DE9BBE1B318AF1001AE741 /* Searchresult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		64C932E61B20AA29004276A4 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		64C932E81B20AA49004276A4 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaWikiAPI.swift; sourceTree = "<group>"; };
+		64DE9BBE1B318AF1001AE741 /* Searchresult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Searchresult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				64C932E81B20AA49004276A4 /* SearchViewController.swift */,
 				6428B7011B25A6D200A96CC7 /* ArticleViewController.swift */,
 				64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */,
+				64DE9BBE1B318AF1001AE741 /* Searchresult.swift */,
 				644F4CB91B2AE24000ACE86A /* Guide.swift */,
 				644F4CBB1B2AE24000ACE86A /* Article.swift */,
 				648C91C01B29863500CF8D9E /* MyWikiTravel.xcdatamodeld */,
@@ -233,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64DE9BBF1B318AF1001AE741 /* Searchresult.swift in Sources */,
 				64C932C51B20A9D7004276A4 /* AppDelegate.swift in Sources */,
 				64C932EB1B20CB0B004276A4 /* MediaWikiAPI.swift in Sources */,
 				644F4CBC1B2AE24000ACE86A /* Article.swift in Sources */,

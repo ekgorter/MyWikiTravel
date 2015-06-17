@@ -12,20 +12,25 @@ import CoreData
 
 class GuideViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // Contains the currenty selected guide (as a list because currently the fetch function returns a list).
     var guide = [Guide]()
+    
+    // Contains all article entities belonging to this guide.
     var articles = [Article]()
     let cellIdentifier = "guideArticleCell"
+    
+    // Required by Core Data to save data.
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     @IBOutlet weak var guideTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Retrieves the currently selected guide entity.
         fetchGuide()
     }
     
-    // NB: Hij herlaadt nu steeds de hele table, maar moet anders met passen van allemaal variabelen.
-    // Hij herlaadt ook als je geen nieuw artikel hebt gesaved, maar via de back knop terugkomt.
+    // Currently reloads the entire table every time this view is presented, to show any updates.
     override func viewWillAppear(animated: Bool) {
         self.fetchArticles()
         self.guideTableView.reloadData()
@@ -52,46 +57,46 @@ class GuideViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if(editingStyle == .Delete ) {
-            // Find the LogItem object the user is trying to delete
+            // Find the Article entity the user is trying to delete.
             let articleToDelete = articles[indexPath.row]
             
-            // Delete it from the managedObjectContext
+            // Delete it from the managedObjectContext.
             managedObjectContext?.deleteObject(articleToDelete)
             
-            // Refresh the table view to indicate that it's deleted
+            // Refresh the table view to indicate that it's deleted.
             self.fetchGuide()
             
             self.fetchArticles()
             
-            // Tell the table view to animate out that row
+            // Tell the table view to animate out that row.
             guideTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             save()
         }
     }
-    
+    // Retrieves the selected guide from Core Data.
     func fetchGuide() {
         let fetchRequest = NSFetchRequest(entityName: "Guide")
         
-        // Create a sort descriptor object that sorts on the "title"
+        // Create a sort descriptor object that sorts on the "title".
         // property of the Core Data object
         let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
         
-        // Set the list of sort descriptors in the fetch request,
-        // so it includes the sort descriptor
+        // Set the list of sort descriptors in the fetch request, so it includes the sort descriptor.
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        // Create a new predicate that filters out any object that
-        // doesn't have a title of "Best Language" exactly.
+        // Create a new predicate that filters out any object that doesn't have the title of this guide.
         let predicate = NSPredicate(format: "title == %@", self.title!)
         
-        // Set the predicate on the fetch request
+        // Set the predicate on the fetch request.
         fetchRequest.predicate = predicate
         
+        // Retrieves the selected guide from Core Data.
         if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Guide] {
             guide = fetchResults
         }
     }
     
+    // Retrieves the articles belonging to this guide from Core Data.
     func fetchArticles() {
         self.articles = [Article]()
         for article in guide[0].guideContent.allObjects as! [Article] {
@@ -99,6 +104,7 @@ class GuideViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
+    // Saves data in Core Data.
     func save() {
         var error : NSError?
         if(managedObjectContext!.save(&error) ) {
@@ -106,12 +112,14 @@ class GuideViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
+    // Passes required data to next viewcontroller.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let searchViewController: SearchViewController = segue.destinationViewController as? SearchViewController {
             searchViewController.guide = guide[0]
         }
         if let articleViewController: ArticleViewController = segue.destinationViewController as? ArticleViewController {
             var articleIndex = guideTableView!.indexPathForSelectedRow()!.row
+            articleViewController.title = articles[articleIndex].title
             articleViewController.savedArticleText = articles[articleIndex].text
             articleViewController.onlineSource = false
         }

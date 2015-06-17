@@ -12,26 +12,36 @@ import CoreData
 
 class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     
-    var article: String!
+    // Contains selected searchresult.
+    var article: Searchresult!
+    
+    // If the source is a saved article, contains the text of the saved article.
     var savedArticleText: String!
+    
+    // Indicates if the article is to be loaded from Core Data or Wikitravel.org.
     var onlineSource: Bool!
-    var guide: Guide!
+    
+    // Variable allows quick use of API methods.
     var api: MediaWikiAPI!
+    
+    // Required by Core Data to save data.
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     @IBOutlet weak var articleTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = article
         api = MediaWikiAPI(delegate: self)
         
         // Display either article text from online article or from saved article in app.
         if onlineSource == true {
+            title = article.title
             // MediaWiki API requires "%20" instead of spaces.
-            api.getArticleText(article.stringByReplacingOccurrencesOfString(" ", withString: "%20"))
+            api.getArticleText(article.title.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         } else {
             self.articleTextView.text = savedArticleText
+            
+            // Removes save button.
             self.self.navigationItem.rightBarButtonItems = []
         }
     }
@@ -47,17 +57,19 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
         })
     }
     
+    // When "save" button is pressed, article is saved to guide and view pops to guide.
     @IBAction func saveArticleBarButton(sender: AnyObject) {
-        saveArticle(article, text: self.articleTextView.text, guide: guide)
+        saveArticle(article.title, text: self.articleTextView.text, guide: article.guide)
         self.navigationController?.popToViewController(navigationController!.viewControllers[1] as! UIViewController, animated: true)
     }
     
+    // Save the currently displayed article.
     func saveArticle(title: String, text: String, guide: Guide) {
-        // Create the new article.
         var newArticle = Article.createInManagedObjectContext(self.managedObjectContext!, title: title, text: text, guide: guide)
         save()
     }
     
+    // Save data to Core Data.
     func save() {
         var error : NSError?
         if(managedObjectContext!.save(&error) ) {

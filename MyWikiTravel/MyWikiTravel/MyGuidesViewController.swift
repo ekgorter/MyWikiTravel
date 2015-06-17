@@ -12,8 +12,10 @@ import CoreData
 
 class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // Contains a list of all "Guide" entities stored in Core Data.
     var guides = [Guide]()
     let cellIdentifier = "myGuidesCell"
+    // Required by Core Data to save data.
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     @IBOutlet weak var guidesTableView: UITableView!
@@ -23,7 +25,7 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
         title = "My Guides"
         // Navigation bar is not translucent to prevent problem with cells staying under bar.
         navigationController?.navigationBar.translucent = false
-        
+        // Retrieves all existing guides from Core Data.
         fetchGuides()
     }
     
@@ -48,16 +50,16 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if(editingStyle == .Delete ) {
-            // Find the LogItem object the user is trying to delete
+            // Find the guide object the user is trying to delete.
             let guideToDelete = guides[indexPath.row]
             
-            // Delete it from the managedObjectContext
+            // Delete it from the managedObjectContext.
             managedObjectContext?.deleteObject(guideToDelete)
             
-            // Refresh the table view to indicate that it's deleted
+            // Refresh the table view to indicate that it's deleted.
             self.fetchGuides()
             
-            // Tell the table view to animate out that row
+            // Tell the table view to animate out that row.
             guidesTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             save()
         }
@@ -86,41 +88,42 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    // Retrieve all existing guides from Core Data.
     func fetchGuides() {
         let fetchRequest = NSFetchRequest(entityName: "Guide")
         
-        // Create a sort descriptor object that sorts on the "title"
-        // property of the Core Data object
+        // Create a sort descriptor object that sorts on the "title" property of the Core Data object.
         let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
         
-        // Set the list of sort descriptors in the fetch request,
-        // so it includes the sort descriptor
+        // Set the list of sort descriptors in the fetch request, so it includes the sort descriptor.
         fetchRequest.sortDescriptors = [sortDescriptor]
         
+        // Fetch all "Guide" entities from Core Data.
         if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Guide] {
             guides = fetchResults
         }
     }
     
+    // Create a new guide entity and display it in the table.
     func saveNewGuide(title : String) {
-        // Create the new  log item
+        // Create the new guide entity.
         var newGuide = Guide.createInManagedObjectContext(self.managedObjectContext!, title: title)
         
-        // Update the array containing the table view row data
+        // Update the array containing the table view row data.
         self.fetchGuides()
         
-        // Animate in the new row
-        // Use Swift's find() function to figure out the index of the newGuide
-        // after it's been added and sorted in our guides array
+        // Use Swift's find() function to figure out the index of the new guide after it's been added and sorted in our guides array.
         if let newGuideIndex = find(guides, newGuide) {
-            // Create an NSIndexPath from the newItemIndex
+            // Create an NSIndexPath from the newGuideIndex
             let newGuideIndexPath = NSIndexPath(forRow: newGuideIndex, inSection: 0)
             // Animate in the insertion of this row
             guidesTableView.insertRowsAtIndexPaths([ newGuideIndexPath ], withRowAnimation: .Automatic)
+            // Save in Core Data.
             save()
         }
     }
     
+    // Saves data to Core Data.
     func save() {
         var error : NSError?
         if(managedObjectContext!.save(&error) ) {
