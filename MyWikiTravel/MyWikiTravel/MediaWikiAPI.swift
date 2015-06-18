@@ -122,5 +122,4 @@ class MediaWikiAPI {
         })
         task.resume()
     }
-
 }

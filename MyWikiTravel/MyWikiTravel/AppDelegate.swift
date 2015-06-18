@@ -17,7 +17,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        var navigationBarAppearance = UINavigationBar.appearance()
+        
+        // Change navigation bar and bar items colors.
+        navigationBarAppearance.tintColor = uicolorFromHex(0xffffff)
+        navigationBarAppearance.barTintColor = uicolorFromHex(0xb35a2d)
+        
+        // Change navigation bar title color.
+        navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
+        // Change status bar items color.
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
         return true
+    }
+    
+    // Allows use of hexadecimal color codes.
+    func uicolorFromHex(rgbValue:UInt32) -> UIColor {
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
 
     func applicationWillResignActive(application: UIApplication) {

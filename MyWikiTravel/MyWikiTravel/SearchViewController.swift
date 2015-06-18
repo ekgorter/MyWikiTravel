@@ -44,7 +44,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         cell.textLabel?.text = article.title
         return cell
     }
-    
+
     // Displays the the results of the inputted search term in the tableview.
     func searchAPIResults(searchResult: NSArray) {
         dispatch_async(dispatch_get_main_queue(), {
@@ -58,7 +58,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         api.searchWikiTravel(articleSearchBar.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
     }
-    
     // Displays selected article contents in new view.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let articleViewController: ArticleViewController = segue.destinationViewController as? ArticleViewController {
