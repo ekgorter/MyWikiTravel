@@ -25,6 +25,7 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
         title = "My Guides"
         // Navigation bar is not translucent to prevent problem with cells staying under bar.
         navigationController?.navigationBar.translucent = false
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Papyrus", size: 25)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
         // Retrieves all existing guides from Core Data.
         fetchGuides()
     }
@@ -39,10 +40,10 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! GuideCell
         let guide = guides[indexPath.row]
-        cell.imageView?.image = UIImage(named: "Guide")
-        cell.textLabel?.text = guide.title
+        cell.guideTitleLabel.text = guide.title
+        
         return cell
     }
     
@@ -141,7 +142,7 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let guideViewController: GuideViewController = segue.destinationViewController as? GuideViewController {
             var guideIndex = guidesTableView!.indexPathForSelectedRow()!.row
-            guideViewController.title = guides[guideIndex].title
+            guideViewController.title = guides[guideIndex].title 
         }
     }
 }

@@ -48,6 +48,7 @@ class GuideViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell!
         let article = articles[indexPath.row]
         cell.textLabel?.text = article.title
+        cell.imageView?.image = UIImage(named: "Article")
         return cell
     }
     
