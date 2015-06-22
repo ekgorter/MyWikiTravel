@@ -24,7 +24,7 @@ class MediaWikiAPI {
     
     // Searches wikitravel.org with the inputted search term. Returns an array of article titles from JSON.
     func searchWikiTravel(searchTerm: String) {
-        let urlPath = "http://wikitravel.org/wiki/en/api.php?format=json&action=query&list=search&srwhat=text&srsearch=\(searchTerm)"
+        let urlPath = "http://wikitravel.org/wiki/en/api.php?format=json&action=query&list=search&srlimit=50&srsearch=\(searchTerm)"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in

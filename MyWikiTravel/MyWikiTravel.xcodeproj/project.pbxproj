@@ -11,7 +11,6 @@
 		644F4CBA1B2AE24000ACE86A /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644F4CB91B2AE24000ACE86A /* Guide.swift */; };
 		644F4CBC1B2AE24000ACE86A /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644F4CBB1B2AE24000ACE86A /* Article.swift */; };
 		648C91C21B29863500CF8D9E /* MyWikiTravel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 648C91C01B29863500CF8D9E /* MyWikiTravel.xcdatamodeld */; };
-		649939A21B32FDB700FE2446 /* Guide.png in Resources */ = {isa = PBXBuildFile; fileRef = 649939A11B32FDB700FE2446 /* Guide.png */; };
 		64C35ED21B34127D00CB9265 /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C35ED11B34127D00CB9265 /* GuideCell.swift */; };
 		64C35ED41B341ACA00CB9265 /* Article.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C35ED31B341ACA00CB9265 /* Article.png */; };
 		64C932C51B20A9D7004276A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932C41B20A9D7004276A4 /* AppDelegate.swift */; };
@@ -42,7 +41,6 @@
 		644F4CB91B2AE24000ACE86A /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		644F4CBB1B2AE24000ACE86A /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		648C91C11B29863500CF8D9E /* MyWikiTravel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWikiTravel.xcdatamodel; sourceTree = "<group>"; };
-		649939A11B32FDB700FE2446 /* Guide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Guide.png; sourceTree = "<group>"; };
 		64C35ED11B34127D00CB9265 /* GuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
 		64C35ED31B341ACA00CB9265 /* Article.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Article.png; sourceTree = "<group>"; };
 		64C932BF1B20A9D7004276A4 /* MyWikiTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWikiTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +111,6 @@
 				644F4CBB1B2AE24000ACE86A /* Article.swift */,
 				64C35ED11B34127D00CB9265 /* GuideCell.swift */,
 				64F150A61B33633500C3EEFE /* GuideCell.png */,
-				649939A11B32FDB700FE2446 /* Guide.png */,
 				64C35ED31B341ACA00CB9265 /* Article.png */,
 				648C91C01B29863500CF8D9E /* MyWikiTravel.xcdatamodeld */,
 				64C932CB1B20A9D7004276A4 /* Images.xcassets */,
@@ -230,7 +227,6 @@
 			files = (
 				64C932CA1B20A9D7004276A4 /* Main.storyboard in Resources */,
 				64C932CF1B20A9D7004276A4 /* LaunchScreen.xib in Resources */,
-				649939A21B32FDB700FE2446 /* Guide.png in Resources */,
 				64C932CC1B20A9D7004276A4 /* Images.xcassets in Resources */,
 				64C35ED41B341ACA00CB9265 /* Article.png in Resources */,
 				64F150A71B33633500C3EEFE /* GuideCell.png in Resources */,

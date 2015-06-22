@@ -83,7 +83,13 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default,handler: { (action: UIAlertAction!) in
             // If any guidename is entered in textfield.
             if input.text != "" {
-                self.saveNewGuide(input.text)
+                var guideNames = [String]()
+                for guide in self.guides {
+                    guideNames.append(guide.title)
+                }
+                if contains(guideNames, input.text) == false {
+                    self.saveNewGuide(input.text)
+                }
             }
         }))
         // Implements textfield functionality.

@@ -116,11 +116,15 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.96862745100000003" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="TQ6-Tb-TWN" secondAttribute="trailing" id="4br-o2-vrl"/>
+                            <constraint firstAttribute="trailing" secondItem="TQ6-Tb-TWN" secondAttribute="trailing" id="4br-o2-vrl">
+                                <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                            </constraint>
                             <constraint firstItem="TQ6-Tb-TWN" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="FBd-Mg-xbX"/>
-                            <constraint firstItem="TQ6-Tb-TWN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Ixp-7m-zWD"/>
+                            <constraint firstItem="TQ6-Tb-TWN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Ixp-7m-zWD">
+                                <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                            </constraint>
                             <constraint firstItem="TQ6-Tb-TWN" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="j53-Z2-9jy"/>
                         </constraints>
                         <variation key="default">
