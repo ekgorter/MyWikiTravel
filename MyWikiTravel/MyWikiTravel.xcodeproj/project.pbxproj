@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6428B7021B25A6D200A96CC7 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6428B7011B25A6D200A96CC7 /* ArticleViewController.swift */; };
 		644F4CBA1B2AE24000ACE86A /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644F4CB91B2AE24000ACE86A /* Guide.swift */; };
-		644F4CBC1B2AE24000ACE86A /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644F4CBB1B2AE24000ACE86A /* Article.swift */; };
 		648C91C21B29863500CF8D9E /* MyWikiTravel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 648C91C01B29863500CF8D9E /* MyWikiTravel.xcdatamodeld */; };
 		64C35ED21B34127D00CB9265 /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C35ED11B34127D00CB9265 /* GuideCell.swift */; };
 		64C35ED41B341ACA00CB9265 /* Article.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C35ED31B341ACA00CB9265 /* Article.png */; };
@@ -22,6 +21,7 @@
 		64C932E71B20AA29004276A4 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932E61B20AA29004276A4 /* GuideViewController.swift */; };
 		64C932E91B20AA49004276A4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932E81B20AA49004276A4 /* SearchViewController.swift */; };
 		64C932EB1B20CB0B004276A4 /* MediaWikiAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */; };
+		64DA404A1B3AE3CD00B28A76 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA40491B3AE3CD00B28A76 /* Article.swift */; };
 		64DE9BBF1B318AF1001AE741 /* Searchresult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DE9BBE1B318AF1001AE741 /* Searchresult.swift */; };
 		64F150A71B33633500C3EEFE /* GuideCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F150A61B33633500C3EEFE /* GuideCell.png */; };
 /* End PBXBuildFile section */
@@ -39,7 +39,6 @@
 /* Begin PBXFileReference section */
 		6428B7011B25A6D200A96CC7 /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		644F4CB91B2AE24000ACE86A /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
-		644F4CBB1B2AE24000ACE86A /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		648C91C11B29863500CF8D9E /* MyWikiTravel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWikiTravel.xcdatamodel; sourceTree = "<group>"; };
 		64C35ED11B34127D00CB9265 /* GuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
 		64C35ED31B341ACA00CB9265 /* Article.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Article.png; sourceTree = "<group>"; };
@@ -56,6 +55,7 @@
 		64C932E61B20AA29004276A4 /* GuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		64C932E81B20AA49004276A4 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaWikiAPI.swift; sourceTree = "<group>"; };
+		64DA40491B3AE3CD00B28A76 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		64DE9BBE1B318AF1001AE741 /* Searchresult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Searchresult.swift; sourceTree = "<group>"; };
 		64F150A61B33633500C3EEFE /* GuideCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GuideCell.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,7 +108,7 @@
 				64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */,
 				64DE9BBE1B318AF1001AE741 /* Searchresult.swift */,
 				644F4CB91B2AE24000ACE86A /* Guide.swift */,
-				644F4CBB1B2AE24000ACE86A /* Article.swift */,
+				64DA40491B3AE3CD00B28A76 /* Article.swift */,
 				64C35ED11B34127D00CB9265 /* GuideCell.swift */,
 				64F150A61B33633500C3EEFE /* GuideCell.png */,
 				64C35ED31B341ACA00CB9265 /* Article.png */,
@@ -251,10 +251,10 @@
 				64C35ED21B34127D00CB9265 /* GuideCell.swift in Sources */,
 				64C932C51B20A9D7004276A4 /* AppDelegate.swift in Sources */,
 				64C932EB1B20CB0B004276A4 /* MediaWikiAPI.swift in Sources */,
-				644F4CBC1B2AE24000ACE86A /* Article.swift in Sources */,
 				6428B7021B25A6D200A96CC7 /* ArticleViewController.swift in Sources */,
 				64C932E51B20AA14004276A4 /* MyGuidesViewController.swift in Sources */,
 				644F4CBA1B2AE24000ACE86A /* Guide.swift in Sources */,
+				64DA404A1B3AE3CD00B28A76 /* Article.swift in Sources */,
 				648C91C21B29863500CF8D9E /* MyWikiTravel.xcdatamodeld in Sources */,
 				64C932E91B20AA49004276A4 /* SearchViewController.swift in Sources */,
 				64C932E71B20AA29004276A4 /* GuideViewController.swift in Sources */,

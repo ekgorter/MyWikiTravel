@@ -16,7 +16,7 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     var article: Searchresult!
     
     // If the source is a saved article, contains the text of the saved article.
-    var savedArticleText: String!
+    var savedArticleText: NSAttributedString!
     
     // Indicates if the article is to be loaded from Core Data or Wikitravel.org.
     var onlineSource: Bool!
@@ -39,7 +39,7 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
             // MediaWiki API requires "%20" instead of spaces.
             api.getArticleText(article.title.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         } else {
-            self.articleTextView.text = savedArticleText
+            self.articleTextView.attributedText = savedArticleText
             
             // Removes save button.
             self.self.navigationItem.rightBarButtonItems = []
@@ -53,18 +53,21 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     // Set text of textview to be the article text as retrieved from wikitravel.org.
     func articleAPIResults(articleText: String) {
         dispatch_async(dispatch_get_main_queue(), {
-            self.articleTextView.text = articleText
+//            self.articleTextView.text = articleText
+            let formattedText = self.formatString(articleText)
+            
+            self.articleTextView.attributedText = formattedText
         })
     }
     
     // When "save" button is pressed, article is saved to guide and view pops to guide.
     @IBAction func saveArticleBarButton(sender: AnyObject) {
-        saveArticle(article.title, text: self.articleTextView.text, guide: article.guide)
+        saveArticle(article.title, text: self.articleTextView.attributedText, guide: article.guide)
         self.navigationController?.popToViewController(navigationController!.viewControllers[1] as! UIViewController, animated: true)
     }
     
     // Save the currently displayed article.
-    func saveArticle(title: String, text: String, guide: Guide) {
+    func saveArticle(title: String, text: NSAttributedString, guide: Guide) {
         var newArticle = Article.createInManagedObjectContext(self.managedObjectContext!, title: title, text: text, guide: guide)
         save()
     }
@@ -75,5 +78,41 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
         if(managedObjectContext!.save(&error) ) {
             println(error?.localizedDescription)
         }
+    }
+    
+    func formatString(articleText: String) -> NSMutableAttributedString {
+        
+        var attributedString = addArticleTextAttributes(articleText)
+        
+        // remove all "=" characters from main string
+        attributedString.mutableString.replaceOccurrencesOfString("=", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: NSMakeRange(0, attributedString.length))
+        
+        // remove all "Edit" substrings from headers
+        attributedString.mutableString.replaceOccurrencesOfString("Edit", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: NSMakeRange(0, attributedString.length))
+        
+        return attributedString
+    }
+    
+    func addArticleTextAttributes(articleText: String) -> NSMutableAttributedString {
+        
+        // Create attributed string
+        var attributedString = NSMutableAttributedString(string: articleText)
+        
+        // Separate string into array
+        var myArray : [String] = articleText.componentsSeparatedByString("==")
+        
+        // Iterate over string parts in array
+        for i in 0...(myArray.count - 1) {
+            // every uneven array item is a header
+            if i % 2 != 0 {
+                // select header string
+                let textToEdit = myArray[i]
+                
+                // select header in main string and change attribute
+                var range = (articleText as NSString).rangeOfString(textToEdit)
+                attributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(20) , range: range)
+            }
+        }
+        return attributedString
     }
 }
