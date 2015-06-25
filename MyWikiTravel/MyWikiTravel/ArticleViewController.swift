@@ -18,6 +18,8 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     // If the source is a saved article, contains the text of the saved article.
     var articleText: String!
     
+    var imageData: NSData!
+    
     // Indicates if the article is to be loaded from Core Data or Wikitravel.org.
     var onlineSource: Bool!
     
@@ -41,8 +43,8 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
             api.getArticleText(article.title.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
             api.getImage(article.title.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         } else {
-//            self.articleTextView.text = articleText
             self.refactorArticleText(articleText)
+            articleImageView.image = UIImage(data: imageData)
             // Removes save button.
             self.self.navigationItem.rightBarButtonItems = []
         }
@@ -74,13 +76,13 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     
     // When "save" button is pressed, article is saved to guide and view pops to guide.
     @IBAction func saveArticleBarButton(sender: AnyObject) {
-        saveArticle(article.title, text: self.articleText, guide: article.guide)
+        saveArticle(article.title, text: self.articleText, image: UIImagePNGRepresentation(self.articleImageView.image), guide: article.guide)
         self.navigationController?.popToViewController(navigationController!.viewControllers[1] as! UIViewController, animated: true)
     }
     
     // Save the currently displayed article.
-    func saveArticle(title: String, text: String, guide: Guide) {
-        var newArticle = Article.createInManagedObjectContext(self.managedObjectContext!, title: title, text: text, guide: guide)
+    func saveArticle(title: String, text: String, image: NSData, guide: Guide) {
+        var newArticle = Article.createInManagedObjectContext(self.managedObjectContext!, title: title, text: text, image: image, guide: guide)
         save()
     }
     

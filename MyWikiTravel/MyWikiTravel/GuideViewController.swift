@@ -122,6 +122,7 @@ class GuideViewController: UIViewController, UITableViewDataSource, UITableViewD
             var articleIndex = guideTableView!.indexPathForSelectedRow()!.row
             articleViewController.title = articles[articleIndex].title
             articleViewController.articleText = articles[articleIndex].text
+            articleViewController.imageData = articles[articleIndex].image
             articleViewController.onlineSource = false
         }
     }

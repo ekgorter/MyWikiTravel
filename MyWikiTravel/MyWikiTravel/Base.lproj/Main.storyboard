@@ -319,13 +319,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CK2-oO-rcT" firstAttribute="top" secondItem="DJE-Bb-m6P" secondAttribute="bottom" constant="8" symbolic="YES" id="1O3-px-4eu"/>
-                            <constraint firstItem="DJE-Bb-m6P" firstAttribute="leading" secondItem="CK2-oO-rcT" secondAttribute="leading" id="4wV-z8-TpV"/>
                             <constraint firstItem="DJE-Bb-m6P" firstAttribute="leading" secondItem="PEl-62-w4i" secondAttribute="leading" id="GNy-rI-WMK"/>
-                            <constraint firstItem="DJE-Bb-m6P" firstAttribute="trailing" secondItem="CK2-oO-rcT" secondAttribute="trailing" id="NMX-pR-HvQ"/>
+                            <constraint firstItem="CK2-oO-rcT" firstAttribute="top" secondItem="DJE-Bb-m6P" secondAttribute="bottom" id="HHZ-Re-Wj7"/>
                             <constraint firstAttribute="trailing" secondItem="DJE-Bb-m6P" secondAttribute="trailing" id="Ndd-gz-oyi"/>
+                            <constraint firstItem="CK2-oO-rcT" firstAttribute="trailing" secondItem="DJE-Bb-m6P" secondAttribute="trailing" id="Neu-5A-xHn"/>
+                            <constraint firstItem="CK2-oO-rcT" firstAttribute="bottom" secondItem="TZs-nc-Rbn" secondAttribute="top" id="Zds-96-Bns"/>
                             <constraint firstItem="DJE-Bb-m6P" firstAttribute="top" secondItem="PEl-62-w4i" secondAttribute="top" id="crV-Ha-heA"/>
-                            <constraint firstItem="CK2-oO-rcT" firstAttribute="bottom" secondItem="TZs-nc-Rbn" secondAttribute="top" id="kbK-j0-tYO"/>
+                            <constraint firstItem="CK2-oO-rcT" firstAttribute="leading" secondItem="DJE-Bb-m6P" secondAttribute="leading" id="w4j-tT-doY"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -333,13 +333,13 @@
                                 <exclude reference="DJE-Bb-m6P"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="1O3-px-4eu"/>
-                                <exclude reference="kbK-j0-tYO"/>
-                                <exclude reference="4wV-z8-TpV"/>
                                 <exclude reference="GNy-rI-WMK"/>
-                                <exclude reference="NMX-pR-HvQ"/>
                                 <exclude reference="Ndd-gz-oyi"/>
                                 <exclude reference="crV-Ha-heA"/>
+                                <exclude reference="HHZ-Re-Wj7"/>
+                                <exclude reference="Neu-5A-xHn"/>
+                                <exclude reference="Zds-96-Bns"/>
+                                <exclude reference="w4j-tT-doY"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -348,13 +348,13 @@
                                 <include reference="DJE-Bb-m6P"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="1O3-px-4eu"/>
-                                <include reference="kbK-j0-tYO"/>
-                                <include reference="4wV-z8-TpV"/>
                                 <include reference="GNy-rI-WMK"/>
-                                <include reference="NMX-pR-HvQ"/>
                                 <include reference="Ndd-gz-oyi"/>
                                 <include reference="crV-Ha-heA"/>
+                                <include reference="HHZ-Re-Wj7"/>
+                                <include reference="Neu-5A-xHn"/>
+                                <include reference="Zds-96-Bns"/>
+                                <include reference="w4j-tT-doY"/>
                             </mask>
                         </variation>
                     </view>
