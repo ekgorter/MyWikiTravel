@@ -96,6 +96,7 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
         // Implements textfield functionality.
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "Enter Guide Name"
+            textField.autocapitalizationType = .Sentences
             input = textField
         }
         // Show pop-up window.
