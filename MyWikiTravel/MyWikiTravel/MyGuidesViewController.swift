@@ -55,6 +55,7 @@ class MyGuidesViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
+    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if(editingStyle == .Delete ) {
             // Find the guide object the user is trying to delete.

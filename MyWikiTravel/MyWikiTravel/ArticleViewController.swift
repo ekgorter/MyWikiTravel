@@ -16,7 +16,7 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     var article: Searchresult!
     
     // If the source is a saved article, contains the text of the saved article.
-    var savedArticleText: NSAttributedString!
+    var articleText: String!
     
     // Indicates if the article is to be loaded from Core Data or Wikitravel.org.
     var onlineSource: Bool!
@@ -28,6 +28,7 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     @IBOutlet weak var articleTextView: UITextView!
+    @IBOutlet weak var articleImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +39,14 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
             title = article.title
             // MediaWiki API requires "%20" instead of spaces.
             api.getArticleText(article.title.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+            api.getImage(article.title.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         } else {
-            self.articleTextView.attributedText = savedArticleText
-            
+//            self.articleTextView.text = articleText
+            self.refactorArticleText(articleText)
             // Removes save button.
             self.self.navigationItem.rightBarButtonItems = []
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,21 +56,30 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     // Set text of textview to be the article text as retrieved from wikitravel.org.
     func articleAPIResults(articleText: String) {
         dispatch_async(dispatch_get_main_queue(), {
-//            self.articleTextView.text = articleText
-            let formattedText = self.formatString(articleText)
-            
-            self.articleTextView.attributedText = formattedText
+            self.articleText = articleText
+            self.refactorArticleText(articleText)
+        })
+    }
+    
+    func imageAPIResults(imageUrl: String) {
+        dispatch_async(dispatch_get_main_queue(), {
+            if let url = NSURL(string: imageUrl) {
+                if let data = NSData(contentsOfURL: url){
+                    
+                    self.articleImageView.image = UIImage(data: data)
+                }
+            }
         })
     }
     
     // When "save" button is pressed, article is saved to guide and view pops to guide.
     @IBAction func saveArticleBarButton(sender: AnyObject) {
-        saveArticle(article.title, text: self.articleTextView.attributedText, guide: article.guide)
+        saveArticle(article.title, text: self.articleText, guide: article.guide)
         self.navigationController?.popToViewController(navigationController!.viewControllers[1] as! UIViewController, animated: true)
     }
     
     // Save the currently displayed article.
-    func saveArticle(title: String, text: NSAttributedString, guide: Guide) {
+    func saveArticle(title: String, text: String, guide: Guide) {
         var newArticle = Article.createInManagedObjectContext(self.managedObjectContext!, title: title, text: text, guide: guide)
         save()
     }
@@ -78,6 +90,13 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
         if(managedObjectContext!.save(&error) ) {
             println(error?.localizedDescription)
         }
+    }
+    
+    func refactorArticleText(articleText: String) {
+        
+        let formattedText = self.formatString(articleText)
+        
+        self.articleTextView.attributedText = formattedText
     }
     
     func formatString(articleText: String) -> NSMutableAttributedString {

@@ -13,6 +13,7 @@ import Foundation
 @objc protocol MediaWikiAPIProtocol {
     optional func searchAPIResults(search: NSArray)
     optional func articleAPIResults(articleText: String)
+    optional func imageAPIResults(imageUrl: String)
 }
 
 class MediaWikiAPI {
@@ -69,8 +70,8 @@ class MediaWikiAPI {
     }
     
     // ::TEST AREA::
-    func getArticleImage(articleTitle: String) {
-        let urlPath = "http://wikitravel.org/wiki/en/api.php?action=query&prop=images&titles=\(articleTitle)&format=json&imlimit=1&imdir=descending"
+    func getImage(articleTitle: String) {
+        let urlPath = "http://wikitravel.org/wiki/en/api.php?action=query&prop=images&titles=\(articleTitle)&format=json&imlimit=500&imdir=descending"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
@@ -85,8 +86,14 @@ class MediaWikiAPI {
                 if let pages: NSDictionary = jsonResult["query"]?["pages"] as? NSDictionary {
                     if let id: String = pages.allKeys.first! as? String {
                         if let images: NSArray = pages[id]!["images"] as? NSArray {
-                            if let imageLocation: String = images[0]["title"] as? String {
-                                self.getArticleThumbnail(imageLocation.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+                            
+                            for image in images {
+                                if let imageLocation: String = image["title"] as? String {
+                                    if imageLocation.lowercaseString.rangeOfString(articleTitle.lowercaseString) != nil {
+                                        self.getImageUrl(imageLocation.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+                                        break
+                                    }
+                                }
                             }
                         }
                     }
@@ -96,8 +103,8 @@ class MediaWikiAPI {
         task.resume()
     }
     
-    func getArticleThumbnail(imageLocation: String) {
-        let urlPath = "http://wikitravel.org/wiki/en/api.php?action=query&titles=\(imageLocation)&prop=imageinfo&iiprop=url&iiurlwidth=60&format=json"
+    func getImageUrl(imageLocation: String) {
+        let urlPath = "http://wikitravel.org/wiki/en/api.php?action=query&titles=\(imageLocation)&prop=imageinfo&iiprop=url&format=json"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
@@ -111,8 +118,8 @@ class MediaWikiAPI {
                 }
                 if let pages: NSDictionary = jsonResult["query"]?["pages"] as? NSDictionary {
                     if let imageInfo: NSArray = pages["-1"]?["imageinfo"] as? NSArray {
-                        if let thumbUrl: String = imageInfo[0]["thumburl"] as? String {
-                            println(thumbUrl)
+                        if let imageUrl: String = imageInfo[0]["url"] as? String {
+                            self.delegate.imageAPIResults!(imageUrl)
                         }
                     }
                 }

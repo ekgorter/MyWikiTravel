@@ -121,7 +121,7 @@ class GuideViewController: UIViewController, UITableViewDataSource, UITableViewD
         if let articleViewController: ArticleViewController = segue.destinationViewController as? ArticleViewController {
             var articleIndex = guideTableView!.indexPathForSelectedRow()!.row
             articleViewController.title = articles[articleIndex].title
-            articleViewController.savedArticleText = articles[articleIndex].text
+            articleViewController.articleText = articles[articleIndex].text
             articleViewController.onlineSource = false
         }
     }
