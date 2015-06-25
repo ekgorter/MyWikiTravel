@@ -23,9 +23,9 @@ class MediaWikiAPI {
         self.delegate = delegate
     }
     
-    // Searches wikitravel.org with the inputted search term. Returns an array of article titles from JSON.    
+    // Searches wikitravel.org with the inputted search term. Returns an array of article titles from JSON.        
     func searchWikiTravel(searchTerm: String) {
-        let urlPath = "http://wikitravel.org/wiki/en/api.php?action=opensearch&search=\(searchTerm)&format=json&limit=50"
+        let urlPath = "http://wikitravel.org/wiki/en/api.php?format=json&action=query&list=search&srlimit=50&srsearch=\(searchTerm)"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
@@ -33,11 +33,13 @@ class MediaWikiAPI {
                 println(error.localizedDescription)
             }
             var err: NSError?
-            if let jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? NSArray {
+            if let jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? NSDictionary {
                 if(err != nil) {
                     println("JSON Error \(err!.localizedDescription)")
                 }
-                self.delegate.searchAPIResults!(jsonResult[1] as! NSArray)
+                if let searchResult: NSArray = jsonResult["query"]?["search"] as? NSArray {
+                    self.delegate.searchAPIResults!(searchResult)
+                }
             }
         })
         task.resume()

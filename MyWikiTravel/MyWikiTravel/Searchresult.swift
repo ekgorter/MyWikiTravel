@@ -17,12 +17,12 @@ struct Searchresult {
         self.guide = guide
     }
     
-    // Retrieves the requested data from the JSON file returned by the API.
+    // Retrieves the requested data from the JSON file returned by the API.    
     static func searchresultsFromJson(searchResult: NSArray, guide: Guide) -> [Searchresult] {
         var articles = [Searchresult]()
         if searchResult.count>0 {
             for result in searchResult {
-                let title = result as? String
+                let title = result["title"] as? String
                 
                 var article = Searchresult(title: title!, guide: guide)
                 articles.append(article)

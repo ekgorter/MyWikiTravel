@@ -11,7 +11,6 @@
 		644F4CBA1B2AE24000ACE86A /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644F4CB91B2AE24000ACE86A /* Guide.swift */; };
 		648C91C21B29863500CF8D9E /* MyWikiTravel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 648C91C01B29863500CF8D9E /* MyWikiTravel.xcdatamodeld */; };
 		64C35ED21B34127D00CB9265 /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C35ED11B34127D00CB9265 /* GuideCell.swift */; };
-		64C35ED41B341ACA00CB9265 /* Article.png in Resources */ = {isa = PBXBuildFile; fileRef = 64C35ED31B341ACA00CB9265 /* Article.png */; };
 		64C932C51B20A9D7004276A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932C41B20A9D7004276A4 /* AppDelegate.swift */; };
 		64C932CA1B20A9D7004276A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64C932C81B20A9D7004276A4 /* Main.storyboard */; };
 		64C932CC1B20A9D7004276A4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C932CB1B20A9D7004276A4 /* Images.xcassets */; };
@@ -22,9 +21,7 @@
 		64C932E91B20AA49004276A4 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932E81B20AA49004276A4 /* SearchViewController.swift */; };
 		64C932EB1B20CB0B004276A4 /* MediaWikiAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */; };
 		64DE9BBF1B318AF1001AE741 /* Searchresult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DE9BBE1B318AF1001AE741 /* Searchresult.swift */; };
-		64ED4C171B3BF61A0099B176 /* ImagePlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 64ED4C161B3BF61A0099B176 /* ImagePlaceholder.png */; };
 		64ED4C191B3BFA6A0099B176 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED4C181B3BFA6A0099B176 /* Article.swift */; };
-		64F150A71B33633500C3EEFE /* GuideCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 64F150A61B33633500C3EEFE /* GuideCell.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +39,6 @@
 		644F4CB91B2AE24000ACE86A /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		648C91C11B29863500CF8D9E /* MyWikiTravel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWikiTravel.xcdatamodel; sourceTree = "<group>"; };
 		64C35ED11B34127D00CB9265 /* GuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
-		64C35ED31B341ACA00CB9265 /* Article.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Article.png; sourceTree = "<group>"; };
 		64C932BF1B20A9D7004276A4 /* MyWikiTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWikiTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C932C31B20A9D7004276A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64C932C41B20A9D7004276A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,9 +53,7 @@
 		64C932E81B20AA49004276A4 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaWikiAPI.swift; sourceTree = "<group>"; };
 		64DE9BBE1B318AF1001AE741 /* Searchresult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Searchresult.swift; sourceTree = "<group>"; };
-		64ED4C161B3BF61A0099B176 /* ImagePlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImagePlaceholder.png; path = ../ImagePlaceholder.png; sourceTree = "<group>"; };
 		64ED4C181B3BFA6A0099B176 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
-		64F150A61B33633500C3EEFE /* GuideCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GuideCell.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,9 +106,6 @@
 				644F4CB91B2AE24000ACE86A /* Guide.swift */,
 				64ED4C181B3BFA6A0099B176 /* Article.swift */,
 				64C35ED11B34127D00CB9265 /* GuideCell.swift */,
-				64ED4C161B3BF61A0099B176 /* ImagePlaceholder.png */,
-				64F150A61B33633500C3EEFE /* GuideCell.png */,
-				64C35ED31B341ACA00CB9265 /* Article.png */,
 				648C91C01B29863500CF8D9E /* MyWikiTravel.xcdatamodeld */,
 				64C932CB1B20A9D7004276A4 /* Images.xcassets */,
 				64C932CD1B20A9D7004276A4 /* LaunchScreen.xib */,
@@ -229,11 +220,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				64C932CA1B20A9D7004276A4 /* Main.storyboard in Resources */,
-				64ED4C171B3BF61A0099B176 /* ImagePlaceholder.png in Resources */,
 				64C932CF1B20A9D7004276A4 /* LaunchScreen.xib in Resources */,
 				64C932CC1B20A9D7004276A4 /* Images.xcassets in Resources */,
-				64C35ED41B341ACA00CB9265 /* Article.png in Resources */,
-				64F150A71B33633500C3EEFE /* GuideCell.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
