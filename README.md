@@ -25,7 +25,7 @@ In this app, the user will be able to create a "guide" which can then be filled 
 
 ###Copyright statement
 
-All code and contents of this app that are not mentioned to be retrieved from external sources are released to the public domain without any restrictions, as mentioned in 
+All code and contents of this app that are not mentioned to be retrieved from external sources are released to the public domain without any restrictions, as mentioned in [LICENSE.md](https://github.com/ekgorter/MyWikiTravel/blob/master/LICENSE.md)
 
 ###External sources used
 
