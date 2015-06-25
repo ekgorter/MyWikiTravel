@@ -71,7 +71,7 @@ class MediaWikiAPI {
         task.resume()
     }
     
-    // ::TEST AREA::
+    // Gets the path to one of the images in an article, selected if image title contains article title (prevents banners etc. being chosen).
     func getImage(articleTitle: String) {
         let urlPath = "http://wikitravel.org/wiki/en/api.php?action=query&prop=images&titles=\(articleTitle)&format=json&imlimit=500&imdir=descending"
         let url = NSURL(string: urlPath)
@@ -105,6 +105,7 @@ class MediaWikiAPI {
         task.resume()
     }
     
+    // Gets the url to the image selected in the getImage method.
     func getImageUrl(imageLocation: String) {
         let urlPath = "http://wikitravel.org/wiki/en/api.php?action=query&titles=\(imageLocation)&prop=imageinfo&iiprop=url&format=json"
         let url = NSURL(string: urlPath)
