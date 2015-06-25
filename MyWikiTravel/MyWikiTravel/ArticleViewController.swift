@@ -12,22 +12,12 @@ import CoreData
 
 class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     
-    // Contains selected searchresult.
+    let coreData = CoreData()
     var article: Searchresult!
-    
-    // If the source is a saved article, contains the text of the saved article.
     var articleText: String!
-    
     var imageData: NSData!
-    
-    // Indicates if the article is to be loaded from Core Data or Wikitravel.org.
     var onlineSource: Bool!
-    
-    // Variable allows quick use of API methods.
     var api: MediaWikiAPI!
-    
-    // Required by Core Data to save data.
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     @IBOutlet weak var articleTextView: UITextView!
     @IBOutlet weak var articleImageView: UIImageView!
@@ -39,16 +29,14 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
         // Display either article text from online article or from saved article in app.
         if onlineSource == true {
             title = article.title
-            // MediaWiki API requires "%20" instead of spaces.
             api.getArticleText(article.title.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
             api.getImage(article.title.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
         } else {
             self.refactorArticleText(articleText)
             articleImageView.image = UIImage(data: imageData)
             // Removes save button.
-            self.self.navigationItem.rightBarButtonItems = []
+            self.navigationItem.rightBarButtonItems = []
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,11 +51,11 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
         })
     }
     
+    // Set imageview image to be the image as retrieved from wikitravel.org (if any).
     func imageAPIResults(imageUrl: String) {
         dispatch_async(dispatch_get_main_queue(), {
             if let url = NSURL(string: imageUrl) {
-                if let data = NSData(contentsOfURL: url){
-                    
+                if let data = NSData(contentsOfURL: url) {
                     self.articleImageView.image = UIImage(data: data)
                 }
             }
@@ -82,54 +70,46 @@ class ArticleViewController: UIViewController, MediaWikiAPIProtocol {
     
     // Save the currently displayed article.
     func saveArticle(title: String, text: String, image: NSData, guide: Guide) {
-        var newArticle = Article.createInManagedObjectContext(self.managedObjectContext!, title: title, text: text, image: image, guide: guide)
-        save()
+        coreData.createNewArticle(title, text: text, image: image, guide: guide)
+        coreData.save()
     }
     
-    // Save data to Core Data.
-    func save() {
-        var error : NSError?
-        if(managedObjectContext!.save(&error) ) {
-            println(error?.localizedDescription)
-        }
-    }
-    
+    // Performs operations required to improve text retrieved from API.
     func refactorArticleText(articleText: String) {
-        
         let formattedText = self.formatString(articleText)
-        
         self.articleTextView.attributedText = formattedText
     }
     
+    // Removes unwanted symbols and patterns from text.
     func formatString(articleText: String) -> NSMutableAttributedString {
+        var attributedString = addTextAttributes(articleText)
         
-        var attributedString = addArticleTextAttributes(articleText)
-        
-        // remove all "=" characters from main string
+        // remove all "=" characters from main string.
         attributedString.mutableString.replaceOccurrencesOfString("=", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: NSMakeRange(0, attributedString.length))
         
-        // remove all "Edit" substrings from headers
+        // remove all "Edit" substrings from headers.
         attributedString.mutableString.replaceOccurrencesOfString("Edit", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: NSMakeRange(0, attributedString.length))
         
         return attributedString
     }
     
-    func addArticleTextAttributes(articleText: String) -> NSMutableAttributedString {
-        
-        // Create attributed string
+    // Find headers in text and increase their font size.
+    func addTextAttributes(articleText: String) -> NSMutableAttributedString {
         var attributedString = NSMutableAttributedString(string: articleText)
         
-        // Separate string into array
-        var myArray : [String] = articleText.componentsSeparatedByString("==")
+        // Separate text into array of strings, where every uneven item is a header.
+        var separatedText: [String] = articleText.componentsSeparatedByString("==")
         
-        // Iterate over string parts in array
-        for i in 0...(myArray.count - 1) {
-            // every uneven array item is a header
-            if i % 2 != 0 {
-                // select header string
-                let textToEdit = myArray[i]
+        // Iterate over each string in array.
+        for stringItem in 0...(separatedText.count - 1) {
+            
+            // every uneven string item is a header.
+            if stringItem % 2 != 0 {
                 
-                // select header in main string and change attribute
+                // select header string.
+                let textToEdit = separatedText[stringItem]
+                
+                // select header in main string and increase font size.
                 var range = (articleText as NSString).rangeOfString(textToEdit)
                 attributedString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(20) , range: range)
             }

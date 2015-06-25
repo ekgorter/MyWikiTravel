@@ -22,6 +22,7 @@
 		64C932EB1B20CB0B004276A4 /* MediaWikiAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */; };
 		64DE9BBF1B318AF1001AE741 /* Searchresult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DE9BBE1B318AF1001AE741 /* Searchresult.swift */; };
 		64ED4C191B3BFA6A0099B176 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED4C181B3BFA6A0099B176 /* Article.swift */; };
+		64ED4C1D1B3C44300099B176 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED4C1C1B3C44300099B176 /* CoreData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaWikiAPI.swift; sourceTree = "<group>"; };
 		64DE9BBE1B318AF1001AE741 /* Searchresult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Searchresult.swift; sourceTree = "<group>"; };
 		64ED4C181B3BFA6A0099B176 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		64ED4C1C1B3C44300099B176 /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,15 +99,8 @@
 			children = (
 				64C932C41B20A9D7004276A4 /* AppDelegate.swift */,
 				64C932C81B20A9D7004276A4 /* Main.storyboard */,
-				64C932E41B20AA14004276A4 /* MyGuidesViewController.swift */,
-				64C932E61B20AA29004276A4 /* GuideViewController.swift */,
-				64C932E81B20AA49004276A4 /* SearchViewController.swift */,
-				6428B7011B25A6D200A96CC7 /* ArticleViewController.swift */,
-				64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */,
-				64DE9BBE1B318AF1001AE741 /* Searchresult.swift */,
-				644F4CB91B2AE24000ACE86A /* Guide.swift */,
-				64ED4C181B3BFA6A0099B176 /* Article.swift */,
-				64C35ED11B34127D00CB9265 /* GuideCell.swift */,
+				64ED4C1A1B3C36240099B176 /* ViewControllers */,
+				64ED4C1B1B3C36390099B176 /* Classes and Structs */,
 				648C91C01B29863500CF8D9E /* MyWikiTravel.xcdatamodeld */,
 				64C932CB1B20A9D7004276A4 /* Images.xcassets */,
 				64C932CD1B20A9D7004276A4 /* LaunchScreen.xib */,
@@ -137,6 +132,30 @@
 				64C932D91B20A9D7004276A4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		64ED4C1A1B3C36240099B176 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				64C932E41B20AA14004276A4 /* MyGuidesViewController.swift */,
+				64C932E61B20AA29004276A4 /* GuideViewController.swift */,
+				64C932E81B20AA49004276A4 /* SearchViewController.swift */,
+				6428B7011B25A6D200A96CC7 /* ArticleViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		64ED4C1B1B3C36390099B176 /* Classes and Structs */ = {
+			isa = PBXGroup;
+			children = (
+				64C932EA1B20CB0B004276A4 /* MediaWikiAPI.swift */,
+				64ED4C1C1B3C44300099B176 /* CoreData.swift */,
+				644F4CB91B2AE24000ACE86A /* Guide.swift */,
+				64ED4C181B3BFA6A0099B176 /* Article.swift */,
+				64DE9BBE1B318AF1001AE741 /* Searchresult.swift */,
+				64C35ED11B34127D00CB9265 /* GuideCell.swift */,
+			);
+			name = "Classes and Structs";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +262,7 @@
 				64DE9BBF1B318AF1001AE741 /* Searchresult.swift in Sources */,
 				64C35ED21B34127D00CB9265 /* GuideCell.swift in Sources */,
 				64C932C51B20A9D7004276A4 /* AppDelegate.swift in Sources */,
+				64ED4C1D1B3C44300099B176 /* CoreData.swift in Sources */,
 				64C932EB1B20CB0B004276A4 /* MediaWikiAPI.swift in Sources */,
 				6428B7021B25A6D200A96CC7 /* ArticleViewController.swift in Sources */,
 				64C932E51B20AA14004276A4 /* MyGuidesViewController.swift in Sources */,
@@ -377,6 +397,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MyWikiTravel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -387,6 +408,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MyWikiTravel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

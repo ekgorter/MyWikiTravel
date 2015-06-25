@@ -11,14 +11,9 @@ import UIKit
 
 class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, MediaWikiAPIProtocol {
     
-    // Contains all requested data found with search.
     var searchResults = [Searchresult]()
-    
-    // Contains the current guide.
     var guide: Guide!
     let cellIdentifier = "searchResultCell"
-    
-    // Variable allows quick use of API methods.
     var api: MediaWikiAPI!
     
     @IBOutlet weak var articleSearchBar: UISearchBar!
@@ -34,11 +29,11 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         super.didReceiveMemoryWarning()
     }
     
-    // Show search results in cells of tableview.
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
     
+    // Show search results in cells of tableview.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell!
         let article = searchResults[indexPath.row]
@@ -51,7 +46,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     // Displays the the results of the inputted search term in the tableview.
     func searchAPIResults(searchResult: NSArray) {
         dispatch_async(dispatch_get_main_queue(), {
-            
             self.searchResults = Searchresult.searchresultsFromJson(searchResult, guide: self.guide)
             self.searchResultsTableView!.reloadData()
         })
@@ -61,6 +55,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         api.searchWikiTravel(articleSearchBar.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
     }
+    
     // Displays selected article contents in new view.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let articleViewController: ArticleViewController = segue.destinationViewController as? ArticleViewController {

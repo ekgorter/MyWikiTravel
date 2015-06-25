@@ -8,31 +8,25 @@
 // Displays table of articles saved in selected guide.
 
 import UIKit
-import CoreData
 
 class GuideViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    // Contains the currenty selected guide (as a list because currently the fetch function returns a list).
+    let coreData = CoreData()
     var guide = [Guide]()
-    
-    // Contains all article entities belonging to this guide.
     var articles = [Article]()
     let cellIdentifier = "guideArticleCell"
-    
-    // Required by Core Data to save data.
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
     @IBOutlet weak var guideTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Retrieves the currently selected guide entity.
-        fetchGuide()
+        self.guide = coreData.fetchGuide(self.title!)
     }
     
-    // Currently reloads the entire table every time this view is presented, to show any updates.
+    // Reloads the table every time this view is presented, to show any updates.
     override func viewWillAppear(animated: Bool) {
-        self.fetchArticles()
+        self.articles = coreData.fetchArticles(self.guide)
         self.guideTableView.reloadData()
     }
     
@@ -40,15 +34,18 @@ class GuideViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.didReceiveMemoryWarning()
     }
     
-    // Show article titles of selected guide in tableview cells.
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articles.count
     }
+    
+    // Show article titles of selected guide in tableview cells.
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell!
         let article = articles[indexPath.row]
+        
         cell.textLabel?.text = article.title
         cell.imageView?.image = UIImage(named: "Article")
+        
         return cell
     }
     
@@ -56,60 +53,17 @@ class GuideViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
+    
+    // Deletes table cell and the article it contains.
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if(editingStyle == .Delete ) {
-            // Find the Article entity the user is trying to delete.
             let articleToDelete = articles[indexPath.row]
             
-            // Delete it from the managedObjectContext.
-            managedObjectContext?.deleteObject(articleToDelete)
-            
-            // Refresh the table view to indicate that it's deleted.
-            self.fetchGuide()
-            
-            self.fetchArticles()
-            
-            // Tell the table view to animate out that row.
+            coreData.delete(articleToDelete)
+            coreData.fetchGuide(self.title!)
+            self.articles = coreData.fetchArticles(self.guide)
             guideTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            save()
-        }
-    }
-    // Retrieves the selected guide from Core Data.
-    func fetchGuide() {
-        let fetchRequest = NSFetchRequest(entityName: "Guide")
-        
-        // Create a sort descriptor object that sorts on the "title".
-        // property of the Core Data object
-        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
-        
-        // Set the list of sort descriptors in the fetch request, so it includes the sort descriptor.
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        // Create a new predicate that filters out any object that doesn't have the title of this guide.
-        let predicate = NSPredicate(format: "title == %@", self.title!)
-        
-        // Set the predicate on the fetch request.
-        fetchRequest.predicate = predicate
-        
-        // Retrieves the selected guide from Core Data.
-        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [Guide] {
-            guide = fetchResults
-        }
-    }
-    
-    // Retrieves the articles belonging to this guide from Core Data.
-    func fetchArticles() {
-        self.articles = [Article]()
-        for article in guide[0].guideContent.allObjects as! [Article] {
-            articles.append(article)
-        }
-    }
-    
-    // Saves data in Core Data.
-    func save() {
-        var error : NSError?
-        if(managedObjectContext!.save(&error) ) {
-            println(error?.localizedDescription)
+            coreData.save()
         }
     }
     

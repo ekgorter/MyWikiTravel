@@ -13,14 +13,14 @@ import CoreData
 class Guide: NSManagedObject {
 
     @NSManaged var title: String
-    
-    // One to many relation with Article entities. Contains articles.
     @NSManaged var guideContent: NSSet
 
     // Method allows creation of new guide.
     class func createInManagedObjectContext(moc: NSManagedObjectContext, title: String) -> Guide {
         let newGuide = NSEntityDescription.insertNewObjectForEntityForName("Guide", inManagedObjectContext: moc) as! Guide
+        
         newGuide.title = title
+        
         return newGuide
     }
 }

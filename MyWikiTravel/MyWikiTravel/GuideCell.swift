@@ -5,6 +5,7 @@
 //  Created by Elias Gorter on 19-06-15.
 //  Copyright (c) 2015 EliasGorter6052274. All rights reserved.
 //
+// Custom tableview cell for cells in MyGuides containing a custom label.
 
 import Foundation
 import UIKit
