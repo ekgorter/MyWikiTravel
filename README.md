@@ -16,7 +16,7 @@ When travelling, bringing a travelguide in some form (book, ebook, flyer, tourgu
 
 This app aims to allow the user to create a personal travelguide, containing informative articles on all locations to be visited on a certain trip. These articles can be selected and downloaded in advance so they are accessible offline. The source of all travel information articles will be [wikitravel.org](www.wikitravel.org/en). This is a community driven website containing a very large database on countries and locations around the world, with information ranging from transportation and safety instructions to attractions and (historical) background information.  
 
-In this app, the user will be able to create a "guide" which can then be filled with articles from wikitravel about all locations that are to be visited during this trip. The articles can be sorted, for example on a day to day basis. This provides the user with a travelguide that contains only the information needed by the user and accessible offline. This removes the problems of requiring an internet connection during use and being presented with more information than needed.   
+In this app, the user will be able to create a "guide" which can then be filled with articles from wikitravel about all locations that are to be visited during this trip. This provides the user with a travelguide that contains only the information needed by the user and accessible offline. This removes the problems of requiring an internet connection during use and being presented with more information than needed.   
 
 ###Screenshots
 
