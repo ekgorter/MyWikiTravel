@@ -3,6 +3,15 @@
 *By Elias Gorter 6052274*
 
 ---
+**Contents**
+
+1. App description
+2. Technical design
+3. Challenges and design decisions
+
+---
+
+
 ##1. App description
 
 ###Inspiration
@@ -13,7 +22,7 @@ When travelling, bringing a travelguide in some form (book, ebook, flyer, tourgu
 
 This app aims to allow the user to create a personal travelguide, containing informative articles on all locations to be visited on a certain trip. These articles can be selected and downloaded in advance so they are accessible offline. The source of all travel information articles will be [wikitravel.org](www.wikitravel.org/en). This is a community driven website containing a very large database on countries and locations around the world, with information ranging from transportation and safety instructions to attractions and (historical) background information.  
 
-In this app, the user will be able to create a "guide" which can then be filled with articles from wikitravel about all locations that are to be visited during this trip. The articles can be sorted, for example on a day to day basis. This provides the user with a travelguide that contains only the information needed by the user and accessible offline. This removes the problems of requiring an internet connection during use and being presented with more information than needed.
+In this app, the user is be able to create a "guide" which can then be filled with articles from Wikitravel about all locations that are to be visited during this trip. This provides the user with a travelguide that contains only the information needed by the user and accessible offline. This removes the problems of requiring an internet connection during use and being presented with more information than needed.
 
 ---
 ##2. Technical design
@@ -40,6 +49,8 @@ This app was written in the Swift language for iPhones using iOS 8 or higher, us
 
 All data used in the app is managed by Core Data. This allows both data persistence and easier data management. Two Core Data entities are used in the app: Guide and Article. The Guide entity consists of a title property, allowing users to create a guide with a name of their choice, and a one-to-many relationship with the Article entity, meaning that a guide may contain several articles. The Article entity has three properties, one for the article title, one for the article text and one for the article image. It has a one-to-one relationship with a Guide entity, meaning that it belongs to a certain guide.
 
+![alt text][coredata]
+
 All Core Data methods implemented in this app are defined in the CoreData.swift file. The NSManagedObject representations of the Guide and Article entities are found in Guide.swift and Article.swift.
 
 ###MediaWiki API
@@ -56,9 +67,13 @@ This app uses four view controllers. The first (root) view is the MyGuidesViewCo
 
 When pressing a guide the GuideViewController is presented to the user. It shows all articles saved in the guide selected by the user in a tableview. A saved article may be deleted by swiping it's cell from right to left and pressing *delete*. Pressing an article cell will display the article contents in the ArticleViewController. Pressing *add* in the top right corner will segue to the SearchViewController.
 
+![alt text][screenshotsreport]
+
 In the SearchViewController a user may enter a string in the search bar, which is then used by the MediaWiki API to search for matches on the Wikitravel website. The resulting list of article titles is then displayed in the tableview. Pressing a search result will load this article in the ArticleViewController.
 
 The ArticleViewController is used to display the articles, both from online or offline sources. It has a UIImageView on top in which an image belonging to the article is displayed. If no image was found, it displays a placeholder image. Below the UIImageView is a UITextView which is used to display the article text, after this text has been modified to make it more suitable for use (increasing the font size of headers etc.). When this viewcontroller is first loaded, it will first check if the content to display is from a saved article or from an online article. If the source is online it will use the MediaWiki API to fetch both the article text and image. If the source is a saved article, the text and image saved in the Article entity are displayed instead. If the article displayed is from an online source, the *save* button in the top right corner may be pressed. This creates a new Article entity loaded with the currently displayed article contents and adds it to the currently selected guide. The view is immediately segued to the GuideViewController.
+
+![alt text][screenshots2report]
 
 ---
 ##3. Challenges and design decisions
@@ -83,4 +98,8 @@ The most frustrating thing during the making of this app was  displaying the art
 ###Searchresult thumbnails
 
 During the third week of development, a lot of time was lost trying to add thumbnails of article images to the searchresult cells. For this a multitude of queries was required. First the article titles had to be found with the normal search query. Then a list of images had to be requested for each article. From this list an image had to be selected, this was tricky because it also contained unwanted items such as banners or buttons. I decided to select the first image that contained the article title in it's title, as this seemed to be a suitable image most of the time. Then finally, the url for the selected image had to be requested. This had to be done for every searchresult, and because I was handeling all API requests asynchronously I had difficulties getting all requests to wait for each other until they were all finished. As it was costing too much time I decided to move on to other issues first. I did end up using the image search functionality for displaying an image in the ArticleViewController.
+
+[screenshotsreport]: https://github.com/ekgorter/ProgrammeerProject/blob/master/doc/ScreenshotsReport.png
+[screenshots2report]: https://github.com/ekgorter/ProgrammeerProject/blob/master/doc/Screenshots2Report.png
+[coredata]: https://github.com/ekgorter/ProgrammeerProject/blob/master/doc/CoreData.png
 
